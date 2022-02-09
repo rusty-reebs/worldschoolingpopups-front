@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./output.css";
+import Nav from "./components/Nav";
+import Card from "./components/Card";
+import sampleData from "./sampleData";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-yellow font-merriweather">
+      <Nav />
+      <h3 className="text-base text-center">Events - All</h3>
+      {sampleData.map((record) => {
+        return (
+          <div className="mx-5 mb-5 flex flex-col">
+            <Card
+              key={record._id}
+              img={record.images.image1}
+              title={record.name}
+              country={record.location.country}
+            />
+          </div>
+        );
+      })}
     </div>
   );
-}
+};
 
 export default App;
