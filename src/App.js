@@ -1,25 +1,31 @@
 import React from "react";
+import { Link, Outlet, useParams } from "react-router-dom";
 import "./output.css";
 import Nav from "./components/Nav";
 import Card from "./components/Card";
-import sampleData from "./sampleData";
+import { getSampleData } from "./sampleData";
 
 const App = () => {
+  let sampleData = getSampleData();
+
   return (
-    <div className="bg-yellow font-merriweather">
+    <div className="bg-yellow">
       <Nav />
       <h3 className="text-base text-center">Events - All</h3>
-      {sampleData.map((record) => {
+      {sampleData.map((event) => {
         return (
           <div className="mx-5 mb-4 flex flex-col">
-            <Card
-              key={record._id}
-              images={record.images}
-              title={record.name}
-              country={record.location.country}
-              dateStart={record.date.start}
-              dateEnd={record.date.end}
-            />
+            <Link to={`${event._id}`} key={event._id}>
+              <Card
+                key={event._id}
+                images={event.images}
+                title={event.name}
+                country={event.location.country}
+                dateStart={event.date.start}
+                dateEnd={event.date.end}
+              />
+            </Link>
+            <Outlet />
           </div>
         );
       })}

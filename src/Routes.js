@@ -7,9 +7,9 @@ const RouteSwitch = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />}>
-          <Route path=":eventId" element={<Detail />} />
-        </Route>
+        <Route path="events" element={<App />} />
+        <Route path="events/:eventId" element={<Detail />} />
+        {/* </Route> */}
       </Routes>
     </BrowserRouter>
   );

@@ -10,7 +10,7 @@ const sampleData = [
       start: "2022-03-01",
       end: "2022-03-15",
     },
-    accomIncluded: "true",
+    accomIncluded: true,
     age: {
       min: "6",
       max: "18",
@@ -51,7 +51,7 @@ const sampleData = [
       start: "2022-04-01",
       end: "2022-04-15",
     },
-    accomIncluded: "false",
+    accomIncluded: false,
     age: {
       min: "10",
       max: "16",
@@ -81,4 +81,10 @@ const sampleData = [
   },
 ];
 
-export default sampleData;
+export function getSampleData() {
+  return sampleData;
+}
+
+export function getEvent(id) {
+  return sampleData.find((event) => event._id === id);
+}
