@@ -7,8 +7,8 @@ const sampleData = [
       city: "Grande Prairie",
     },
     date: {
-      start: "03-01-2022",
-      end: "03-15-2022",
+      start: "2022-03-01",
+      end: "2022-03-15",
     },
     accomIncluded: "true",
     age: {
@@ -29,7 +29,8 @@ const sampleData = [
     images: {
       image1:
         "https://res.cloudinary.com/dnwnw3z4z/image/upload/v1644442931/worldschoolingpopups/gpab_e9dlky.jpg",
-      image2: "",
+      image2:
+        "https://res.cloudinary.com/dnwnw3z4z/image/upload/v1644595490/worldschoolingpopups/gbab-2_jx9por.jpg",
       image3: "",
     },
     contact: {
@@ -47,8 +48,8 @@ const sampleData = [
       city: "Ubud",
     },
     date: {
-      start: "04-01-2022",
-      end: "04-15-2022",
+      start: "2022-04-01",
+      end: "2022-04-15",
     },
     accomIncluded: "false",
     age: {

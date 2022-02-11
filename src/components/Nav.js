@@ -15,7 +15,7 @@ const Nav = () => {
   });
   return (
     <div>
-      <nav className="flex flex-wrap items-center justify-between p-5 md:w-3/4 md:mx-auto bg-darkblue">
+      <nav className="flex flex-wrap items-center justify-between mb-5 p-5 md:w-3/4 md:mx-auto bg-darkblue">
         <h1 className="text-white text-lg">
           <a href="/">
             <img
