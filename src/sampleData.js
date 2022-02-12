@@ -5,6 +5,8 @@ const sampleData = [
       country: "Canada",
       state: "AB",
       city: "Grande Prairie",
+      lat: 55.170834,
+      lon: -118.794724,
     },
     date: {
       start: "2022-03-01",
@@ -31,7 +33,8 @@ const sampleData = [
         "https://res.cloudinary.com/dnwnw3z4z/image/upload/v1644442931/worldschoolingpopups/gpab_e9dlky.jpg",
       image2:
         "https://res.cloudinary.com/dnwnw3z4z/image/upload/v1644595490/worldschoolingpopups/gbab-2_jx9por.jpg",
-      image3: "",
+      image3:
+        "https://res.cloudinary.com/dnwnw3z4z/image/upload/v1644622732/worldschoolingpopups/gpab-3_xrbmpa.jpg",
     },
     contact: {
       name: "Jaime Salonen",
@@ -46,6 +49,8 @@ const sampleData = [
       country: "Indonesia",
       state: "Bali",
       city: "Ubud",
+      lat: -8.519268,
+      lon: 115.263298,
     },
     date: {
       start: "2022-04-01",
@@ -65,7 +70,8 @@ const sampleData = [
       currency: "USD",
     },
     excursions: "Daily excursions to the yoga studio.",
-    description: "Come enjoy Bali while you learn.",
+    description:
+      "Come enjoy Bali while you learn. Banana pancakes will be served daily. You will also get to see so many offerings being made all around the property. Wake up to the pleasant sound of roosters in the morning.",
     images: {
       image1:
         "https://res.cloudinary.com/dnwnw3z4z/image/upload/v1644444627/worldschoolingpopups/bali_avfotf.jpg",

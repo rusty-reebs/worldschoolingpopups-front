@@ -4,7 +4,7 @@ const Card = (props) => {
   let startDate = new Date(props.dateStart);
   let formattedDate = startDate.toLocaleDateString("en-us", {
     year: "numeric",
-    month: "short",
+    month: "long",
   });
 
   return (
