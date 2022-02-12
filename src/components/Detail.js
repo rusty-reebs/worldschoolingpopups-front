@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import "../output.css";
 import CarouselComp from "./Carousel";
+import Map from "./Map";
 import { FaBed } from "react-icons/fa";
 import { FaMoneyBill } from "react-icons/fa";
 import { FaChild } from "react-icons/fa";
@@ -17,7 +18,6 @@ const Detail = (props) => {
   let params = useParams();
 
   let event = getEvent(parseInt(params.eventId, 10));
-  console.log(event);
   let startDate = new Date(event.date.start);
   let endDate = new Date(event.date.end);
   let formattedStart = startDate.toLocaleDateString("en-us", {
@@ -32,7 +32,7 @@ const Detail = (props) => {
   });
 
   return (
-    <div className="bg-yellow">
+    <div className="bg-yellow h-full">
       <CarouselComp images={event.images} />
       <div>
         <div className="mb-2 bg-darkblue">
@@ -115,6 +115,15 @@ const Detail = (props) => {
               </p>
             </div>
           </div>
+          <div className="border-b border-orange mb-2 py-2">
+            <Map
+              defaultLocation={event.location}
+              zoomLevel={13}
+              mapHeight={"50vh"}
+              showPin={true}
+            />
+          </div>
+          <div className="h-4"></div>
         </div>
       </div>
     </div>

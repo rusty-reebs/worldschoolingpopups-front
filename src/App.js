@@ -1,20 +1,28 @@
 import React from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import "./output.css";
 import Nav from "./components/Nav";
 import Card from "./components/Card";
+import Button from "./components/Button";
 import { getSampleData } from "./sampleData";
 
 const App = () => {
   let sampleData = getSampleData();
 
+  //? Google maps at top of feed
   return (
-    <div className="bg-yellow">
+    <div className="bg-yellow h-full">
       <Nav />
-      <h3 className="text-base text-center">Events - All</h3>
+      {/* <Map location={defaultLocation} zoomLevel={1} /> */}
+      <div className="flex justify-evenly items-center">
+        <h3 className="text-base">Events - All</h3>
+        <Link to="map">
+          <Button />
+        </Link>
+      </div>
       {sampleData.map((event) => {
         return (
-          <div className="mx-5 mb-4 flex flex-col">
+          <div key={event._id} className="mx-5 mb-4 flex flex-col">
             <Link to={`${event._id}`} key={event._id}>
               <Card
                 key={event._id}
@@ -29,6 +37,7 @@ const App = () => {
           </div>
         );
       })}
+      <div className="h-4"></div>
     </div>
   );
 };

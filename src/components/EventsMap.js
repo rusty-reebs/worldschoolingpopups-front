@@ -8,6 +8,7 @@ const EventsMap = () => {
   let eventLocations = sampleData.map((event) => {
     return {
       name: event.name,
+      id: event._id,
       lat: event.location.lat,
       lon: event.location.lon,
     };
