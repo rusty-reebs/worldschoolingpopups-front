@@ -23,12 +23,12 @@ const EventsMap = () => {
       <Nav />
       <div className="mx-3">
         <h3 className="text-base text-center mb-4">Events - All</h3>
-        <div className="border border-orange">
+        <div className="h-screen border border-orange">
           <Map
             locations={eventLocations}
             defaultLocation={defaultLocation}
             zoomLevel={1}
-            mapHeight={"100vh"}
+            mapHeight={"100%"}
             showPin={false}
           />
         </div>

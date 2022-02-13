@@ -3,6 +3,8 @@ import GoogleMapReact from "google-map-react";
 import LocationPin from "./LocationPin";
 import "../output.css";
 
+const googleApi = process.env.REACT_APP_API_KEY;
+
 const Map = ({ locations, defaultLocation, zoomLevel, mapHeight, showPin }) => {
   const eventPin = {
     address: "",
@@ -12,7 +14,8 @@ const Map = ({ locations, defaultLocation, zoomLevel, mapHeight, showPin }) => {
   return (
     <div style={{ height: mapHeight, width: "100%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.GOOGLEMAPS }}
+        //! move API key to backend and fetch it. More secure.
+        bootstrapURLKeys={{ key: googleApi }}
         defaultCenter={eventPin}
         defaultZoom={zoomLevel}
       >

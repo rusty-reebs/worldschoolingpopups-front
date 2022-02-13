@@ -9,15 +9,13 @@ import { getSampleData } from "./sampleData";
 const App = () => {
   let sampleData = getSampleData();
 
-  //? Google maps at top of feed
   return (
     <div className="bg-yellow h-full">
       <Nav />
-      {/* <Map location={defaultLocation} zoomLevel={1} /> */}
       <div className="flex justify-evenly items-center">
         <h3 className="text-base">Events - All</h3>
         <Link to="map">
-          <Button />
+          <Button name="Map" />
         </Link>
       </div>
       {sampleData.map((event) => {

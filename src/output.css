@@ -570,6 +570,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 1rem;
 }
 
+.h-auto {
+  height: auto;
+}
+
+.h-60 {
+  height: 15rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -674,6 +682,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(244 151 108 / var(--tw-border-opacity));
 }
 
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
 .bg-yellow {
   --tw-bg-opacity: 1;
   background-color: rgb(251 232 166 / var(--tw-bg-opacity));
@@ -738,6 +751,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 0.5rem;
 }
 
+.pt-1\.5 {
+  padding-top: 0.375rem;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
+.pb-1\.5 {
+  padding-bottom: 0.375rem;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -746,8 +775,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: right;
 }
 
+.align-baseline {
+  vertical-align: baseline;
+}
+
+.align-top {
+  vertical-align: top;
+}
+
 .align-middle {
   vertical-align: middle;
+}
+
+.align-text-top {
+  vertical-align: text-top;
+}
+
+.align-text-bottom {
+  vertical-align: text-bottom;
 }
 
 .font-merriweather {
@@ -779,6 +824,15 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.5rem;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
 .italic {
   font-style: italic;
 }
@@ -808,8 +862,74 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(48 60 108 / var(--tw-text-opacity));
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.placeholder-black::-webkit-input-placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-placeholder-opacity));
+}
+
+.placeholder-black:-ms-input-placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-placeholder-opacity));
+}
+
+.placeholder-black::placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-placeholder-opacity));
+}
+
+.placeholder-lightblue::-webkit-input-placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(180 223 229 / var(--tw-placeholder-opacity));
+}
+
+.placeholder-lightblue:-ms-input-placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(180 223 229 / var(--tw-placeholder-opacity));
+}
+
+.placeholder-lightblue::placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(180 223 229 / var(--tw-placeholder-opacity));
+}
+
 .opacity-50 {
   opacity: 0.5;
+}
+
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.transition {
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, -webkit-text-decoration-color, -webkit-transform, -webkit-filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-transform, -webkit-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-150 {
+  transition-duration: 150ms;
+}
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.focus-within\:border-lightblue:focus-within {
+  --tw-border-opacity: 1;
+  border-color: rgb(180 223 229 / var(--tw-border-opacity));
+}
+
+.focus-within\:border-orange:focus-within {
+  --tw-border-opacity: 1;
+  border-color: rgb(244 151 108 / var(--tw-border-opacity));
 }
 
 @media (min-width: 768px) {

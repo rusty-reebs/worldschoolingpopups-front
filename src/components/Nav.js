@@ -17,7 +17,7 @@ const Nav = () => {
     <div>
       <nav className="flex flex-wrap items-center justify-between mb-5 p-5 md:w-3/4 md:mx-auto bg-darkblue">
         <h1 className="text-white text-lg">
-          <a href="/">
+          <a href="/events">
             <img
               src={logo.default}
               style={{ display: "inline", height: 30 }}
@@ -44,7 +44,7 @@ const Nav = () => {
             Home
           </a>
           <a
-            href="/join"
+            href="/events/create"
             className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
           >
             <i className="fas fa-star text-yellow"></i>&nbsp;&nbsp;List Your

@@ -4,9 +4,9 @@ import "../output.css";
 
 const Button = (props) => {
   return (
-    <button className="bg-orange py-1 px-3 border rounded-lg">
+    <button className="bg-darkblue text-white py-1 px-3 border rounded-lg">
       <FaMap className="inline" />
-      &nbsp;Map
+      &nbsp;&nbsp;{props.name}
     </button>
   );
 };
