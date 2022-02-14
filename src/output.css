@@ -632,6 +632,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   justify-content: space-evenly;
 }
 
+.gap-x-1 {
+  -webkit-column-gap: 0.25rem;
+          column-gap: 0.25rem;
+}
+
+.gap-x-2 {
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+}
+
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -749,6 +759,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .pt-1\.5 {
@@ -930,6 +945,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .focus-within\:border-orange:focus-within {
   --tw-border-opacity: 1;
   border-color: rgb(244 151 108 / var(--tw-border-opacity));
+}
+
+.focus\:border-orange:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(244 151 108 / var(--tw-border-opacity));
+}
+
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 @media (min-width: 768px) {

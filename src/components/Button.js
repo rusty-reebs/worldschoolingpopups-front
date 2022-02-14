@@ -1,12 +1,18 @@
 import React from "react";
+import { IconContext } from "react-icons";
 import { FaMap } from "react-icons/fa";
 import "../output.css";
 
-const Button = (props) => {
+const Button = ({ name, mapIcon }) => {
   return (
     <button className="bg-darkblue text-white py-1 px-3 border rounded-lg">
-      <FaMap className="inline" />
-      &nbsp;&nbsp;{props.name}
+      {mapIcon ? (
+        <IconContext.Provider value={{ style: { verticalAlign: "middle" } }}>
+          <FaMap className="inline-block" />
+          &nbsp;&nbsp;
+        </IconContext.Provider>
+      ) : null}
+      {name}
     </button>
   );
 };

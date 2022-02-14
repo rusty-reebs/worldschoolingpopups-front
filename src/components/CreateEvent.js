@@ -1,31 +1,71 @@
 import React from "react";
 import { useState } from "react";
 import Nav from "./Nav";
-import Input from "./Input";
+import Input, { SelectInput, CountryInput, TextAreaInput } from "./Input";
 import Button from "./Button";
+import {
+  CountryDropdown,
+  RegionDropdown,
+  CountryRegionData,
+} from "react-country-region-selector";
 import "../output.css";
 
 const CreateEvent = (props) => {
   const [newEventName, setNewEventName] = useState("");
-  const [errorsArray, setErrorsArray] = useState([]);
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [dateStart, setDateStart] = useState("");
+  const [dateEnd, setDateEnd] = useState("");
+  const [accomIncluded, setAccomIncluded] = useState("");
+  const [ageMin, setAgeMin] = useState("");
+  const [ageMax, setAgeMax] = useState("");
+  const [tempHigh, setTempHigh] = useState("");
+  const [tempLow, setTempLow] = useState("");
+  const [description, setDescription] = useState("");
+  const [contactName, setContactName] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactWebsite, setContactWebsite] = useState("");
+  const [contactFbPage, setContactFbPage] = useState("");
+  const [errorsArray, setErrorsArray] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
+    setErrorsArray("");
     e.preventDefault();
     try {
-      let rawResponse = await fetch("http://127.0.0.1:4000/tests", {
+      let rawResponse = await fetch("http://127.0.0.1:4000/events", {
         method: "POST",
         headers: {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ eventName: newEventName }),
+        body: JSON.stringify({
+          eventName: newEventName,
+          country: country,
+          city: city,
+          dateStart: dateStart,
+          dateEnd: dateEnd,
+          accomIncluded: accomIncluded,
+          ageMin: ageMin,
+          ageMax: ageMax,
+          tempHigh: tempHigh,
+          tempLow: tempLow,
+          description: description,
+          contactName: contactName,
+          contactEmail: contactEmail,
+          contactFbPage: contactFbPage,
+          contactWebsite: contactWebsite,
+        }),
       });
-      console.log(rawResponse);
-      // let textJson = await rawResponse.text();
-      // console.log(textJson);
-      let errorsArray = await rawResponse.json();
-      console.log(errorsArray);
-      setErrorsArray(errorsArray);
+      console.log("raw", rawResponse);
+      let responseJson = await rawResponse.json();
+      console.log(responseJson);
+      if ("errors" in responseJson) {
+        setErrorsArray(responseJson.errors);
+      } else {
+        setErrorsArray(false);
+        setSuccess(true);
+      }
 
       //! not receiving a JSON response to use code below. Receiving type "cors" ????
       //   let responseJson = await rawResponse.json();
@@ -58,73 +98,127 @@ const CreateEvent = (props) => {
             value={newEventName}
             onChange={(e) => setNewEventName(e.target.value)}
           />
+          <CountryInput
+            name="country"
+            label="Country"
+            value={country}
+            onChange={(value) => setCountry(value)}
+          />
+          <Input
+            name="city"
+            placeholder=""
+            label="City"
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <Input
+            name="dateStart"
+            placeholder=""
+            label="Start Date"
+            type="date"
+            value={dateStart}
+            onChange={(e) => setDateStart(e.target.value)}
+          />
+          <Input
+            name="dateEnd"
+            placeholder=""
+            label="End Date"
+            type="date"
+            value={dateEnd}
+            onChange={(e) => setDateEnd(e.target.value)}
+          />
+          <SelectInput
+            name="accomIncluded"
+            placeholder=""
+            label="Accommodation Included"
+            value={accomIncluded}
+            onChange={(e) => setAccomIncluded(e.target.value)}
+          />
+          <div className="flex gap-x-2">
+            <Input
+              name="ageMin"
+              placeholder=""
+              label="Minimum Age"
+              type="number"
+              value={ageMin}
+              onChange={(e) => setAgeMin(e.target.value)}
+            />
+            <Input
+              name="ageMax"
+              placeholder=""
+              label="Maximum Age"
+              type="number"
+              value={ageMax}
+              onChange={(e) => setAgeMax(e.target.value)}
+            />
+          </div>
+          <div className="flex gap-x-2">
+            <Input
+              name="tempHigh"
+              placeholder=""
+              label="Average High&nbsp;&#176;C"
+              type="number"
+              value={tempHigh}
+              onChange={(e) => setTempHigh(e.target.value)}
+            />
+            <Input
+              name="tempLow"
+              placeholder=""
+              label="Average Low&nbsp;&#176;C"
+              type="number"
+              value={tempLow}
+              onChange={(e) => setTempLow(e.target.value)}
+            />
+          </div>
+          <TextAreaInput
+            name="description"
+            placeholder=""
+            label="Event Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <Input
+            name="contactName"
+            placeholder=""
+            label="Contact Name"
+            type="text"
+            value={contactName}
+            onChange={(e) => setContactName(e.target.value)}
+          />
+          <Input
+            name="contactEmail"
+            placeholder=""
+            label="Contact Email"
+            type="email"
+            value={contactEmail}
+            onChange={(e) => setContactEmail(e.target.value)}
+          />
+          <Input
+            name="contactFbPage"
+            placeholder=""
+            label="Facebook Page"
+            type="url"
+            value={contactFbPage}
+            onChange={(e) => setContactFbPage(e.target.value)}
+          />
+          <Input
+            name="contactWebsite"
+            placeholder=""
+            label="Website"
+            type="url"
+            value={contactWebsite}
+            onChange={(e) => setContactWebsite(e.target.value)}
+          />
           {errorsArray
             ? errorsArray.map((error, index) => {
                 return <p key={index}>{error.msg}</p>;
               })
             : null}
-          {/* <Input name="country" placeholder="" label="Country" type="text" />
-          <Input name="state" placeholder="" label="State" type="text" />
-          <Input name="city" placeholder="" label="City" type="text" />
-          <Input name="lat" placeholder="" label="Latitude" type="text" />
-          <Input name="lon" placeholder="" label="Longitude" type="text" />
-          <Input
-            name="dateStart"
-            placeholder=""
-            label="Start Date"
-            type="text"
-          />
-          <Input name="dateEnd" placeholder="" label="End Date" type="text" />
-          <Input
-            name="accomIncluded"
-            placeholder=""
-            label="Accommodation Included"
-            type="type"
-          />
-          <Input name="ageMin" placeholder="" label="Minimum Age" type="text" />
-          <Input name="ageMax" placeholder="" label="Maximum Age" type="text" /> */}
-
-          <Button name="Submit"></Button>
-
-          {/* <label htmlFor="eventName">Event Name</label>
-          <input type="text" name="eventName" />
-          <label htmlFor="country">Country</label>
-          <input type="text" name="country" />
-          <label htmlFor="state">State</label>
-          <input type="text" name="state" />
-          <label htmlFor="city">City</label>
-          <input type="text" name="city" />
-          <label htmlFor="lat">Latitude</label>
-          <input type="text" name="lat" />
-          <label htmlFor="lon">Longitude</label>
-          <input type="text" name="lon" />
-          <label htmlFor="dateStart">Start Date</label>
-          <input type="text" name="dateStart" />
-          <label htmlFor="dateEnd">End Date</label>
-          <input type="text" name="dateEnd" />
-          <label htmlFor="accomIncluded">Accomodation Included</label>
-          <input type="text" name="accomIncluded" />
-          <label htmlFor="ageMin">Minimum Age</label>
-          <input type="text" name="ageMin" />
-          <label htmlFor="ageMax">Maximum Age</label>
-          <input type="text" name="ageMax" />
-          <label htmlFor="tempMax">Average High Temperature</label>
-          <input type="text" name="tempMax" />
-          <label htmlFor="tempMin">Average Low Temperature</label>
-          <input type="text" name="tempMin" />
-          <label htmlFor="excursions">Excursions</label>
-          <textarea name="eventName" />
-          <label htmlFor="description">Description</label>
-          <textarea name="description" />
-          <label htmlFor="contactName">Contact Name</label>
-          <input type="text" name="contactName" />
-          <label htmlFor="contactEmail">Contact Email</label>
-          <input type="email" name="contactEmail" />
-          <label htmlFor="contactWebsite">Website</label>
-          <input type="text" name="contactWebsite" />
-          <label htmlFor="contactFb">Facebook Page</label>
-          <input type="text" name="contactFb" />
-          <button type="submit">Submit</button> */}
+          {success ? <p>Success!</p> : null}
+          <div className="flex justify-center mt-5">
+            <Button name="Submit"></Button>
+          </div>
         </form>
       </div>
       <div className="h-4"></div>

@@ -15,7 +15,7 @@ const App = () => {
       <div className="flex justify-evenly items-center">
         <h3 className="text-base">Events - All</h3>
         <Link to="map">
-          <Button name="Map" />
+          <Button name="Map" mapIcon="true" />
         </Link>
       </div>
       {sampleData.map((event) => {
