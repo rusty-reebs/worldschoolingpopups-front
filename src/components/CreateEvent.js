@@ -7,6 +7,7 @@ import "../output.css";
 
 const CreateEvent = (props) => {
   const [newEventName, setNewEventName] = useState("");
+  const [errorsArray, setErrorsArray] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,8 +21,12 @@ const CreateEvent = (props) => {
         body: JSON.stringify({ eventName: newEventName }),
       });
       console.log(rawResponse);
-      let textJson = await rawResponse.text();
-      console.log(textJson);
+      // let textJson = await rawResponse.text();
+      // console.log(textJson);
+      let errorsArray = await rawResponse.json();
+      console.log(errorsArray);
+      setErrorsArray(errorsArray);
+
       //! not receiving a JSON response to use code below. Receiving type "cors" ????
       //   let responseJson = await rawResponse.json();
       //   let parsed = responseJson.parse();
@@ -53,6 +58,11 @@ const CreateEvent = (props) => {
             value={newEventName}
             onChange={(e) => setNewEventName(e.target.value)}
           />
+          {errorsArray
+            ? errorsArray.map((error, index) => {
+                return <p key={index}>{error.msg}</p>;
+              })
+            : null}
           {/* <Input name="country" placeholder="" label="Country" type="text" />
           <Input name="state" placeholder="" label="State" type="text" />
           <Input name="city" placeholder="" label="City" type="text" />
