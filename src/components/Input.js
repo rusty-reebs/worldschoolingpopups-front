@@ -21,6 +21,7 @@ const Input = ({
         className="text-xs font-light placeholder-black px-2 pt-1.5"
       >
         {label}
+        {required ? <span className="text-red">*</span> : null}
       </label>
       <input
         type={type}
@@ -33,7 +34,7 @@ const Input = ({
   );
 };
 
-const TextAreaInput = ({ name, label, value, onChange }) => {
+const TextAreaInput = ({ name, label, required, value, onChange }) => {
   return (
     <div className="bg-white border transition duration-150 ease-in-out focus-within:border-orange border-black rounded-md mb-2">
       <label
@@ -41,6 +42,7 @@ const TextAreaInput = ({ name, label, value, onChange }) => {
         className="text-xs font-light placeholder-black px-2 pt-1.5"
       >
         {label}
+        {required ? <span className="text-red">*</span> : null}
       </label>
       <textarea
         value={value}
@@ -52,7 +54,7 @@ const TextAreaInput = ({ name, label, value, onChange }) => {
   );
 };
 
-const SelectInput = ({ name, label }) => {
+const SelectInput = ({ name, label, value, onChange, required }) => {
   return (
     <div className="bg-white border transition duration-150 ease-in-out focus-within:border-orange border-black rounded-md mb-2">
       <label
@@ -60,9 +62,11 @@ const SelectInput = ({ name, label }) => {
         className="text-xs font-light placeholder-black px-2 pt-1.5"
       >
         {label}
+        {required ? <span className="text-red">*</span> : null}
       </label>
       <select
         id={name}
+        onChange={onChange}
         className="bg-white focus:outline-none mb-2 text-base font-light placeholder-black w-full px-1"
       >
         <option value="true">Yes</option>
@@ -72,7 +76,7 @@ const SelectInput = ({ name, label }) => {
   );
 };
 
-const CountryInput = ({ name, label, value, onChange }) => {
+const CountryInput = ({ name, label, required, value, onChange }) => {
   return (
     <div className="bg-white border transition duration-150 ease-in-out focus-within:border-orange border-black rounded-md mb-2">
       <label
@@ -80,6 +84,7 @@ const CountryInput = ({ name, label, value, onChange }) => {
         className="text-xs font-light placeholder-black px-2 pt-1.5"
       >
         {label}
+        {required ? <span className="text-red">*</span> : null}
       </label>
       <CountryDropdown
         name={name}

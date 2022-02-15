@@ -13,6 +13,8 @@ module.exports = {
       lighterblue: "#D2FDFF",
       black: "#000000",
       white: "#f0f8ff",
+      red: "#ef3038",
+      green: "#228b22",
     },
   },
   plugins: [],
