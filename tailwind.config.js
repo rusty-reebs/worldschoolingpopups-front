@@ -3,6 +3,7 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
+      source: ['"Source Sans Pro"', "sans-serif"],
       merriweather: ['"Merriweather Sans"', "sans-serif"],
     },
     colors: {

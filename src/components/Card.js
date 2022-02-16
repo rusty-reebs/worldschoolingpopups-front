@@ -10,7 +10,7 @@ const Card = (props) => {
   return (
     <div className="mt-4 md:w-3/4 md:mx-auto border-none rounded-md">
       <img
-        src={props.images.image1}
+        src={props.images[0].url}
         style={{ display: "block", borderRadius: "0.375rem", maxheight: 100 }}
         alt="eventimage"
       />

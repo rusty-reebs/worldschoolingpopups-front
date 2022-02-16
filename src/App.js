@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./output.css";
 import Nav from "./components/Nav";
@@ -7,7 +7,26 @@ import Button from "./components/Button";
 import { getSampleData } from "./sampleData";
 
 const App = () => {
-  let sampleData = getSampleData();
+  // let sampleData = getSampleData();
+  const [sampleData, setSampleData] = useState([]);
+
+  useEffect(() => {
+    try {
+      const loadEvents = async () => {
+        let data = await fetch("http://127.0.0.1:4000/events", {
+          mode: "cors",
+        });
+        let jsonData = await data.json();
+        setSampleData(jsonData);
+        console.log(jsonData);
+      };
+      loadEvents();
+    } catch (error) {
+      if (error) {
+        console.log(error);
+      }
+    }
+  }, []);
 
   return (
     <div className="bg-yellow h-full">
