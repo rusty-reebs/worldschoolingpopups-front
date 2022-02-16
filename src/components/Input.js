@@ -34,6 +34,34 @@ const Input = ({
   );
 };
 
+const ImageInput = ({ name, label }) => {
+  return (
+    <div className="bg-white border transition duration-150 ease-in-out focus-within:border-orange border-black rounded-md mb-2">
+      <label
+        htmlFor={name}
+        className="text-xs font-light placeholder-black px-2 pt-1.5"
+      >
+        {label}
+      </label>
+      <input
+        type="file"
+        className="bg-white w-full px-2 pt-1 pb-2 text-black outline-none text-base font-light rounded-md"
+        name="image1"
+      />
+      <input
+        type="file"
+        className="bg-white w-full px-2 pb-2 text-black outline-none text-base font-light rounded-md"
+        name="image2"
+      />
+      <input
+        type="file"
+        className="bg-white w-full px-2 pb-2 text-black outline-none text-base font-light rounded-md"
+        name="image3"
+      />
+    </div>
+  );
+};
+
 const TextAreaInput = ({ name, label, required, value, onChange }) => {
   return (
     <div className="bg-white border transition duration-150 ease-in-out focus-within:border-orange border-black rounded-md mb-2">
@@ -97,4 +125,4 @@ const CountryInput = ({ name, label, required, value, onChange }) => {
 };
 
 export default Input;
-export { CountryInput, SelectInput, TextAreaInput };
+export { CountryInput, SelectInput, ImageInput, TextAreaInput };

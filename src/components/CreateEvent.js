@@ -3,8 +3,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
 import Nav from "./Nav";
-import Input, { SelectInput, CountryInput, TextAreaInput } from "./Input";
+import Input, {
+  SelectInput,
+  CountryInput,
+  ImageInput,
+  TextAreaInput,
+} from "./Input";
 import Button from "./Button";
+import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
+
 import {
   CountryDropdown,
   RegionDropdown,
@@ -16,6 +23,8 @@ const CreateEvent = (props) => {
   const [newEventName, setNewEventName] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
+  const [lat, setLat] = useState("");
+  const [lon, setLon] = useState("");
   const [dateStart, setDateStart] = useState("");
   const [dateEnd, setDateEnd] = useState("");
   const [accomIncluded, setAccomIncluded] = useState(true);
@@ -29,6 +38,14 @@ const CreateEvent = (props) => {
   const [contactWebsite, setContactWebsite] = useState("");
   const [contactFbPage, setContactFbPage] = useState("");
   const [errorsArray, setErrorsArray] = useState("");
+  const [images, setImages] = useState([]);
+  //   const [imageUrl1, setImageUrl1] = useState("");
+  //   const [image2Url, setImage2Url] = useState("");
+  //   const [image3Url, setImage3Url] = useState("");
+  //   const [image1id, setImage1id] = useState("");
+  //   const [image2id, setImage2id] = useState("");
+  //   const [image3id, setImage3id] = useState("");
+  const [checkmark, setCheckmark] = useState([]);
   const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
@@ -48,6 +65,8 @@ const CreateEvent = (props) => {
           eventName: newEventName,
           country: country,
           city: city,
+          lat: lat,
+          lon: lon,
           dateStart: dateStart,
           dateEnd: dateEnd,
           accomIncluded: accomIncluded,
@@ -60,6 +79,12 @@ const CreateEvent = (props) => {
           contactEmail: contactEmail,
           contactFbPage: contactFbPage,
           contactWebsite: contactWebsite,
+          images: images,
+          //   images: {
+          // image1: { url: imageUrl1 },
+          // image2: { url: image2Url, cloudinary_id: image2id },
+          // image3: { url: image3Url, cloudinary_id: image3id },
+          //   },
         }),
       });
       console.log("raw", rawResponse);
@@ -71,7 +96,9 @@ const CreateEvent = (props) => {
         setErrorsArray(false);
         setSuccess(true);
         setTimeout(() => {
-          return navigate("/events");
+          //   return navigate("/events");
+          //   return navigate(responseJson.url);
+          //   return navigate("/events/" + responseJson._id);
         }, 1000);
       }
 
@@ -124,6 +151,26 @@ const CreateEvent = (props) => {
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
+          <div className="flex gap-x-2">
+            <Input
+              name="lat"
+              placeholder=""
+              label="Latitude"
+              type="number"
+              required="true"
+              value={lat}
+              onChange={(e) => setLat(e.target.value)}
+            />
+            <Input
+              name="lon"
+              placeholder=""
+              label="Longitude"
+              type="number"
+              required="true"
+              value={lon}
+              onChange={(e) => setLon(e.target.value)}
+            />
+          </div>
           <Input
             name="dateStart"
             placeholder=""
@@ -232,6 +279,36 @@ const CreateEvent = (props) => {
             value={contactWebsite}
             onChange={(e) => setContactWebsite(e.target.value)}
           />
+          <div className="flex justify-center mb-2">
+            <div>
+              <CloudinaryUploadWidget
+                setCheckmark={setCheckmark}
+                checkmark={checkmark}
+                // setImageUrl1={setImageUrl1}
+                // setImage2Url={setImage2Url}
+                // setImage3Url={setImage3Url}
+                // setImage1id={setImage1id}
+                // setImage2id={setImage2id}
+                // setImage3id={setImage3id}
+                images={images}
+                setImages={setImages}
+              />
+            </div>
+            <div>
+              <p className="text-xs font-light ml-2">Max 3, 1MB each.</p>
+              <div className="flex justify-center">
+                {checkmark
+                  ? checkmark.map((check, index) => {
+                      return (
+                        <p key={index} className="text-center">
+                          <FaCheckCircle className="text-green" />
+                        </p>
+                      );
+                    })
+                  : null}
+              </div>
+            </div>
+          </div>
           {errorsArray
             ? errorsArray.map((error, index) => {
                 return (

@@ -13,7 +13,10 @@ const RouteSwitch = () => {
         <Route path="events/:eventId" element={<Detail />} />
         <Route path="events/map" element={<EventsMap />} />
         <Route path="events/create" element={<CreateEvent />} />
-        {/* </Route> */}
+        {/* <Route
+        path="*"
+        element={<Navigate to="/" />}
+    /> */}
       </Routes>
     </BrowserRouter>
   );
