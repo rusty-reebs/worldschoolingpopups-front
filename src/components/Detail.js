@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../output.css";
 import CarouselComp from "./Carousel";
 import Map from "./Map";
@@ -14,7 +14,6 @@ import { FaEnvelope } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa";
 import { getEvent } from "../sampleData";
 
-//! needs to fetch data, don't rely on state
 const Detail = (props) => {
   const [eventData, setEventData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -44,7 +43,19 @@ const Detail = (props) => {
   }, []);
 
   if (isLoading) {
-    return <div>LOADING...</div>;
+    // return <div>LOADING...</div>;
+    return (
+      <div className="bg-yellow flex h-screen w-full align-middle">
+        <div className="flex justify-center flex-col mx-auto">
+          <div className="flex items-center justify-center space-x-2 animate-pulse">
+            <div className="w-8 h-8 bg-orange rounded-full"></div>
+            <div className="w-8 h-8 bg-orange rounded-full"></div>
+            <div className="w-8 h-8 bg-orange rounded-full"></div>
+          </div>
+          <div className="text-center text-sm text-black mt-4">Loading...</div>
+        </div>
+      </div>
+    );
   } else {
     let startDate = new Date(eventData.date.start);
     let endDate = new Date(eventData.date.end);

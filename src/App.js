@@ -8,7 +8,8 @@ import { getSampleData } from "./sampleData";
 
 const App = () => {
   // let sampleData = getSampleData();
-  const [sampleData, setSampleData] = useState([]);
+  const [eventData, setEventData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     try {
@@ -17,8 +18,9 @@ const App = () => {
           mode: "cors",
         });
         let jsonData = await data.json();
-        setSampleData(jsonData);
         console.log(jsonData);
+        setEventData(jsonData);
+        setIsLoading(false);
       };
       loadEvents();
     } catch (error) {
@@ -31,30 +33,47 @@ const App = () => {
   return (
     <div className="bg-yellow h-full">
       <Nav />
-      <div className="flex justify-evenly items-center">
-        <h3 className="text-base">Events - All</h3>
-        <Link to="map">
-          <Button name="Map" mapIcon="true" />
-        </Link>
-      </div>
-      {sampleData.map((event) => {
-        return (
-          <div key={event._id} className="mx-5 mb-4 flex flex-col">
-            <Link to={`${event._id}`} key={event._id}>
-              <Card
-                key={event._id}
-                images={event.images}
-                title={event.name}
-                country={event.location.country}
-                dateStart={event.date.start}
-                dateEnd={event.date.end}
-              />
-            </Link>
-            <Outlet />
+      {isLoading ? (
+        <div className="bg-yellow flex h-screen w-full align-middle">
+          <div className="flex justify-center flex-col mx-auto">
+            <div className="flex items-center justify-center space-x-2 animate-pulse">
+              <div className="w-8 h-8 bg-orange rounded-full"></div>
+              <div className="w-8 h-8 bg-orange rounded-full"></div>
+              <div className="w-8 h-8 bg-orange rounded-full"></div>
+            </div>
+            <div className="text-center text-sm text-black mt-4">
+              Loading...
+            </div>
           </div>
-        );
-      })}
-      <div className="h-4"></div>
+        </div>
+      ) : (
+        <>
+          <div className="flex justify-evenly items-center">
+            <h3 className="text-base">Events - All</h3>
+            <Link to="map">
+              <Button name="Map" mapIcon="true" />
+            </Link>
+          </div>
+          {eventData.map((event) => {
+            return (
+              <div key={event._id} className="mx-5 mb-4 flex flex-col">
+                <Link to={`${event._id}`} key={event._id}>
+                  <Card
+                    key={event._id}
+                    images={event.images}
+                    title={event.name}
+                    country={event.location.country}
+                    dateStart={event.date.start}
+                    dateEnd={event.date.end}
+                  />
+                </Link>
+                <Outlet />
+              </div>
+            );
+          })}
+          <div className="h-4"></div>
+        </>
+      )}
     </div>
   );
 };
