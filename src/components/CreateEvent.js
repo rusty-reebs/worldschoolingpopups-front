@@ -25,6 +25,8 @@ const CreateEvent = (props) => {
   const [city, setCity] = useState("");
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
+  const [eventType, setEventType] = useState(true); // true = "fixed"
+  const [isDisabled, setIsDisabled] = useState(false);
   const [dateStart, setDateStart] = useState("");
   const [dateEnd, setDateEnd] = useState("");
   const [accomIncluded, setAccomIncluded] = useState(true);
@@ -49,9 +51,13 @@ const CreateEvent = (props) => {
   const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
+  const handleChange = (e) => {
+    setEventType(e.target.value);
+    setIsDisabled(!isDisabled);
+  };
 
   const handleSubmit = async (e) => {
-    console.log(accomIncluded);
+    console.log("ACCOM INCLUDED", accomIncluded);
     setErrorsArray("");
     e.preventDefault();
     try {
@@ -67,6 +73,7 @@ const CreateEvent = (props) => {
           city: city,
           lat: lat,
           lon: lon,
+          eventType: eventType,
           dateStart: dateStart,
           dateEnd: dateEnd,
           accomIncluded: accomIncluded,
@@ -80,11 +87,6 @@ const CreateEvent = (props) => {
           contactFbPage: contactFbPage,
           contactWebsite: contactWebsite,
           images: images,
-          //   images: {
-          // image1: { url: imageUrl1 },
-          // image2: { url: image2Url, cloudinary_id: image2id },
-          // image3: { url: image3Url, cloudinary_id: image3id },
-          //   },
         }),
       });
       console.log("raw", rawResponse);
@@ -95,10 +97,9 @@ const CreateEvent = (props) => {
       } else {
         setErrorsArray(false);
         setSuccess(true);
+        let eventId = responseJson._id.toString();
         setTimeout(() => {
-          //   return navigate("/events");
-          //   return navigate(responseJson.url);
-          //   return navigate("/events/" + responseJson._id);
+          return navigate("/events/" + eventId);
         }, 1000);
       }
 
@@ -154,7 +155,7 @@ const CreateEvent = (props) => {
           <div className="flex gap-x-2">
             <Input
               name="lat"
-              placeholder=""
+              placeholder="eg. 50.112"
               label="Latitude"
               type="number"
               required="true"
@@ -163,7 +164,7 @@ const CreateEvent = (props) => {
             />
             <Input
               name="lon"
-              placeholder=""
+              placeholder="eg. -118.203"
               label="Longitude"
               type="number"
               required="true"
@@ -171,12 +172,22 @@ const CreateEvent = (props) => {
               onChange={(e) => setLon(e.target.value)}
             />
           </div>
+          <SelectInput
+            name="eventtype"
+            placeholder=""
+            label="Event Type"
+            firstOption={"Fixed Date"}
+            secondOption={"Open-Ended / Multi-Session"}
+            required="true"
+            value={eventType}
+            onChange={handleChange}
+          />
           <Input
             name="dateStart"
             placeholder=""
             label="Start Date"
             type="date"
-            required="true"
+            isDisabled={isDisabled}
             value={dateStart}
             onChange={(e) => setDateStart(e.target.value)}
           />
@@ -185,7 +196,7 @@ const CreateEvent = (props) => {
             placeholder=""
             label="End Date"
             type="date"
-            required="true"
+            isDisabled={isDisabled}
             value={dateEnd}
             onChange={(e) => setDateEnd(e.target.value)}
           />
@@ -193,6 +204,8 @@ const CreateEvent = (props) => {
             name="accomIncluded"
             placeholder=""
             label="Accommodation Included"
+            firstOption={"Yes"}
+            secondOption={"No"}
             required="true"
             value={accomIncluded}
             onChange={(e) => setAccomIncluded(e.target.value)}
@@ -245,6 +258,9 @@ const CreateEvent = (props) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+
+          {/* excursions */}
+
           <Input
             name="contactName"
             placeholder=""

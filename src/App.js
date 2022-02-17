@@ -48,12 +48,10 @@ const App = () => {
         </div>
       ) : (
         <>
-          <div className="flex justify-evenly items-center">
-            <h3 className="text-base">Events - All</h3>
-            <Link to="map">
-              <Button name="Map" mapIcon="true" />
-            </Link>
-          </div>
+          <h3 className="text-center text-lg">Events - All</h3>
+          <Link to="map" className="fixed inset-x-0 bottom-8 text-center">
+            <Button name="Map" mapIcon="true" />
+          </Link>
           {eventData.map((event) => {
             return (
               <div key={event._id} className="mx-5 mb-4 flex flex-col">
@@ -63,8 +61,8 @@ const App = () => {
                     images={event.images}
                     title={event.name}
                     country={event.location.country}
+                    eventType={event.date.eventType}
                     dateStart={event.date.start}
-                    dateEnd={event.date.end}
                   />
                 </Link>
                 <Outlet />

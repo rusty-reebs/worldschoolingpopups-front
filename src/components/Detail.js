@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import "../output.css";
 import CarouselComp from "./Carousel";
 import Map from "./Map";
+import { FaCalendar } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaBed } from "react-icons/fa";
 import { FaMoneyBill } from "react-icons/fa";
 import { FaChild } from "react-icons/fa";
@@ -11,6 +13,7 @@ import { FaWalking } from "react-icons/fa";
 import { FaSnowflake } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa";
 import { getEvent } from "../sampleData";
 
@@ -79,10 +82,16 @@ const Detail = (props) => {
             <div className="mx-5 py-3  text-white">
               <h2 className="text-2xl">{eventData.name}</h2>
               <p>
+                <FaMapMarkerAlt className="inline text-white" />
+                &nbsp;&nbsp;
                 {eventData.location.city}, {eventData.location.country}
               </p>
               <p>
-                {formattedStart} - {formattedEnd}
+                <FaCalendar className="inline text-white" />
+                &nbsp;&nbsp;
+                {eventData.date.eventType
+                  ? formattedStart + " - " + formattedEnd
+                  : "Open-ended / Continuous"}
               </p>
             </div>
           </div>
@@ -93,23 +102,23 @@ const Detail = (props) => {
                 &nbsp; {eventData.cost.amount} {eventData.cost.currency} per person per
                 day
               </p> */}
-              <p className="italic">
+              <p className="font-bold italic">
                 <FaBed className="inline text-darkblue" />
                 &nbsp; Accommodation {eventData.accomIncluded ? "" : "NOT"}{" "}
                 included in price.
               </p>
             </div>
             <div className="border-b border-orange py-2">
-              <p>
+              <p className="font-bold">
                 <FaChild className="inline text-darkblue" />
                 &nbsp; For ages {eventData.age.min} - {eventData.age.max} years.
               </p>
             </div>
             <div className="border-b border-orange py-2">
-              <p>{eventData.description}</p>
+              <p className="text-sm">{eventData.description}</p>
             </div>
             <div className="border-b border-orange py-2">
-              <h4 className="mb-2">
+              <h4 className="mb-2 font-bold">
                 <FaInfoCircle className="inline text-darkblue" />
                 &nbsp; Other information
               </h4>
@@ -126,34 +135,48 @@ const Detail = (props) => {
                     </p>
                   </div>
                 ) : null}
-                <p className="mt-3">
+                <p className="mt-3 text-sm font-bold">
                   <FaSnowflake className="inline text-darkblue" />
                   &nbsp; Average temperatures for the period:&nbsp;
                 </p>
-                <p>
-                  <i>
-                    {eventData.temperature.low} - {eventData.temperature.high}
-                    &#176;C.
-                  </i>
+                <p className="text-sm">
+                  {eventData.temperature.low} - {eventData.temperature.high}
+                  &#176;C.
                 </p>
               </div>
             </div>
             <div className="border-b border-orange mb-2 py-2">
-              <h4 className="mb-2">
+              <h4 className="mb-2 font-bold">
                 <FaAddressCard className="inline text-darkblue" />
                 &nbsp; Contact
               </h4>
               <div className="mx-2">
-                <p>{eventData.contact.name}</p>
-                <p>
+                <p className="text-sm mb-2">{eventData.contact.name}</p>
+                <p className="text-sm">
                   <FaEnvelope className="inline text-darkblue" />
-                  &nbsp;&nbsp;{eventData.contact.email}
-                </p>
-                <p>
-                  <FaGlobe className="inline text-darkblue" />
                   &nbsp;&nbsp;
-                  <a href={eventData.website}>{eventData.website}</a>
+                  <a href="mailto:{eventData.contact.email}">
+                    {eventData.contact.email}
+                  </a>
                 </p>
+                {eventData.contact.fbPage ? (
+                  <p>
+                    <FaFacebook className="inline text-darkblue" />
+                    &nbsp;&nbsp;
+                    <a href={eventData.contact.fbPage} className="text-xs">
+                      {eventData.contact.fbPage}
+                    </a>
+                  </p>
+                ) : null}
+                {eventData.contact.website ? (
+                  <p>
+                    <FaGlobe className="inline text-darkblue" />
+                    &nbsp;&nbsp;
+                    <a href={eventData.contact.website} className="text-xs">
+                      {eventData.contact.website}
+                    </a>
+                  </p>
+                ) : null}
               </div>
             </div>
             <div className="border-b border-orange mb-2 py-2">

@@ -12,6 +12,7 @@ const Input = ({
   label = "",
   type,
   required,
+  isDisabled,
   ...rest
 }) => {
   return (
@@ -25,9 +26,10 @@ const Input = ({
       </label>
       <input
         type={type}
-        className="bg-white w-full px-2 pb-1.5 text-black outline-none text-base font-light rounded-md"
+        className="bg-white w-full px-2 pb-1.5 text-black outline-none text-base font-light rounded-md disabled:opacity-25"
         name={name}
         placeholder={placeholder}
+        disabled={isDisabled}
         {...rest}
       />
     </div>
@@ -82,7 +84,16 @@ const TextAreaInput = ({ name, label, required, value, onChange }) => {
   );
 };
 
-const SelectInput = ({ name, label, value, onChange, required }) => {
+const SelectInput = ({
+  name,
+  label,
+  firstOption,
+  secondOption,
+  value,
+  defaultValue,
+  onChange,
+  required,
+}) => {
   return (
     <div className="bg-white border transition duration-150 ease-in-out focus-within:border-orange border-black rounded-md mb-2">
       <label
@@ -97,8 +108,8 @@ const SelectInput = ({ name, label, value, onChange, required }) => {
         onChange={onChange}
         className="bg-white focus:outline-none mb-2 text-base font-light placeholder-black w-full px-1"
       >
-        <option value="true">Yes</option>
-        <option value="false">No</option>
+        <option value={true}>{firstOption}</option>
+        <option value={false}>{secondOption}</option>
       </select>
     </div>
   );

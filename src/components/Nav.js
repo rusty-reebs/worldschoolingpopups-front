@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../output.css";
 import { useEffect } from "react";
 
@@ -37,46 +38,60 @@ const Nav = () => {
           </button>
         </div>
         <div className="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-dark2 md:border-none">
-          <a
-            href="/"
+          <Link
+            to="/events"
             className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
           >
             Home
-          </a>
-          <a
-            href="/events/create"
+          </Link>
+          <Link
+            to="/about"
             className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
           >
-            <i className="fas fa-star text-yellow"></i>&nbsp;&nbsp;List Your
-            Event
-          </a>
-          <a
-            href="/admin"
+            About
+          </Link>
+          <Link
+            to="/events/map"
             className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
           >
-            Become an Admin
-          </a>
-          <a
-            href="/sign-up"
+            Events Map
+          </Link>
+          {/* <Link
+            // to="/events/search"
+            to="#"
+            className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
+          >
+            <i className="fas fa-star text-yellow"></i>&nbsp;&nbsp;Search Events
+          </Link> */}
+          <Link
+            to="/events/create"
+            // to="#"
+            className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
+          >
+            <i className="fas fa-star text-yellow"></i>&nbsp;&nbsp;Coming Soon -
+            List Your Event
+          </Link>
+          {/* <Link
+            to="/sign-up"
             className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
           >
             Sign Up
-          </a>
-          <a
-            href="/log-in"
+          </Link> */}
+          {/* <Link
+            to="/log-in"
             className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
           >
             Log In
-          </a>
-          <p className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none">
+          </Link> */}
+          {/* <p className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none">
             <i className="fas fa-user-circle"></i>username
           </p>
-          <a
-            href="/log-out"
+          <Link
+            to="/log-out"
             className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
           >
             Log Out
-          </a>
+          </Link> */}
         </div>
       </nav>
     </div>
