@@ -1,13 +1,15 @@
+//TODO photo upload dimensions
+//TODO excursions on detail page
+//TODO tailwind md screen size
+
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./output.css";
 import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
-import { getSampleData } from "./sampleData";
 
 const App = () => {
-  // let sampleData = getSampleData();
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -48,28 +50,35 @@ const App = () => {
         </div>
       ) : (
         <>
-          <h3 className="text-center text-lg">Events - All</h3>
-          <Link to="map" className="fixed inset-x-0 bottom-8 text-center">
-            <Button name="Map" mapIcon="true" />
-          </Link>
-          {eventData.map((event) => {
-            return (
-              <div key={event._id} className="mx-5 mb-4 flex flex-col">
-                <Link to={`${event._id}`} key={event._id}>
-                  <Card
+          <div className="md:mx-6">
+            <h3 className="text-center text-lg md:text-2xl">Events - All</h3>
+            <Link to="map" className="fixed inset-x-0 bottom-8 text-center">
+              <Button name="Map" mapIcon="true" />
+            </Link>
+            <div className="md:flex md:flex-row md:h-screen">
+              {eventData.map((event) => {
+                return (
+                  <div
                     key={event._id}
-                    images={event.images}
-                    title={event.name}
-                    country={event.location.country}
-                    eventType={event.date.eventType}
-                    dateStart={event.date.start}
-                  />
-                </Link>
-                <Outlet />
-              </div>
-            );
-          })}
-          <div className="h-4"></div>
+                    className="mx-5 mb-4 flex flex-col md:flex-row"
+                  >
+                    <Link to={`${event._id}`} key={event._id}>
+                      <Card
+                        key={event._id}
+                        images={event.images}
+                        title={event.name}
+                        country={event.location.country}
+                        eventType={event.date.eventType}
+                        dateStart={event.date.start}
+                      />
+                    </Link>
+                    <Outlet />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="h-4"></div>
+          </div>
         </>
       )}
     </div>

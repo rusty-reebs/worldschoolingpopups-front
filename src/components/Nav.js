@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../output.css";
-import { useEffect } from "react";
 
 const logo = require("../globe-favicon.svg");
 
@@ -16,8 +15,8 @@ const Nav = () => {
   });
   return (
     <div>
-      <nav className="flex flex-wrap items-center justify-between mb-5 p-5 md:w-3/4 md:mx-auto bg-darkblue">
-        <h1 className="text-white text-lg">
+      <nav className="flex flex-wrap items-center justify-between mb-5 p-5 md:w-100 md:px-9 md:mb-9 bg-darkblue">
+        <h1 className="text-white text-lg md:text-2xl">
           <a href="/events">
             <img
               src={logo.default}
@@ -27,7 +26,7 @@ const Nav = () => {
           </a>
           &nbsp;worldschoolingpopups.com
         </h1>
-        <div className="flex md:hidden text-dark3">
+        <div className="flex md:hidden text-white">
           <button id="hamburger">
             <p className="toggle block text-2xl">
               <i className="fas fa-bars"></i>
@@ -37,22 +36,22 @@ const Nav = () => {
             </p>
           </button>
         </div>
-        <div className="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-dark2 md:border-none">
+        <div className="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-lightblue md:border-none">
           <Link
             to="/events"
-            className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
+            className="block md:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue md:border-none md:text-lg"
           >
             Home
           </Link>
           <Link
             to="/about"
-            className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
+            className="block md:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue md:border-none md:text-lg"
           >
             About
           </Link>
           <Link
             to="/events/map"
-            className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
+            className="block md:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue md:border-none md:text-lg"
           >
             Events Map
           </Link>
@@ -66,10 +65,13 @@ const Nav = () => {
           <Link
             to="/events/create"
             // to="#"
-            className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
+            className="block md:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue md:border-none md:text-lg"
           >
-            <i className="fas fa-star text-yellow"></i>&nbsp;&nbsp;Coming Soon -
-            List Your Event
+            <p>List Your Event</p>
+            <p className="text-xs text-yellow">
+              <i className="fas fa-star text-yellow"></i>&nbsp;&nbsp;Coming
+              Soon&nbsp;&nbsp;<i className="fas fa-star text-yellow"></i>
+            </p>
           </Link>
           {/* <Link
             to="/sign-up"
