@@ -1,20 +1,36 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "../output.css";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { crop } from "@cloudinary/url-gen/actions/resize";
+import { focusOn } from "@cloudinary/url-gen/qualifiers/gravity";
 
-//! change to map method
-const CarouselComp = (props) => {
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: "dnwnw3z4z",
+  },
+});
+
+const CarouselComp = ({ images }) => {
+  console.log(images);
+  let processedImages = images.map((image) => {
+    return cld
+      .image(image.cloudinary_id)
+      .resize(crop().gravity(focusOn("custom")));
+  });
+  console.log(processedImages);
   return (
     <Carousel showThumbs={false}>
-      <div>
-        <img src={props.images[0].url} alt="eventimage1" />
-      </div>
-      <div>
-        <img src={props.images[1].url} alt="eventimage2" />
-      </div>
-      {/* <div>
-        <img src={props.images[2].url} alt="eventimage3" />
-      </div> */}
+      {processedImages.map((image, index) => {
+        // const { url } = image;
+        let newUrl = image.toURL();
+        return (
+          <div key={index}>
+            <img src={newUrl} alt={"eventimage" + index} />
+          </div>
+        );
+      })}
     </Carousel>
   );
 };

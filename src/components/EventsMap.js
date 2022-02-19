@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Map from "./Map";
 import Nav from "./Nav";
-import { getSampleData } from "../sampleData";
 
 const EventsMap = () => {
   const [eventData, setEventData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
-  // let sampleData = getSampleData();
 
   useEffect(() => {
     try {
@@ -16,7 +13,6 @@ const EventsMap = () => {
           mode: "cors",
         });
         let jsonData = await data.json();
-        console.log(jsonData);
         setEventData(jsonData);
         setIsLoading(false);
       };

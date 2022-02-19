@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../output.css";
 import CarouselComp from "./Carousel";
+import Nav from "./Nav";
 import Map from "./Map";
+import { transformImages } from "./CloudinaryUploadWidget";
 import { FaCalendar } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaBed } from "react-icons/fa";
-import { FaMoneyBill } from "react-icons/fa";
 import { FaChild } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 import { FaWalking } from "react-icons/fa";
@@ -15,7 +16,6 @@ import { FaAddressCard } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa";
-import { getEvent } from "../sampleData";
 
 const Detail = (props) => {
   const [eventData, setEventData] = useState({});
@@ -46,7 +46,6 @@ const Detail = (props) => {
   }, []);
 
   if (isLoading) {
-    // return <div>LOADING...</div>;
     return (
       <div className="bg-yellow flex h-screen w-full align-middle">
         <div className="flex justify-center flex-col mx-auto">
@@ -60,6 +59,12 @@ const Detail = (props) => {
       </div>
     );
   } else {
+    let transformedImages = transformImages(eventData.images);
+    console.log("first", transformedImages);
+    let newImageUrls = transformedImages.map((image) => {
+      return image.toURL();
+    });
+    console.log("second", newImageUrls);
     let startDate = new Date(eventData.date.start);
     let endDate = new Date(eventData.date.end);
     let formattedStart = startDate.toLocaleDateString("en-us", {
@@ -74,11 +79,36 @@ const Detail = (props) => {
       year: "numeric",
     });
 
+    //TODO need conditional for md screen, CarouselComp is false
     return (
       <div className="bg-yellow h-full">
-        <CarouselComp images={eventData.images} />
-        <div>
-          <div className="mb-2 bg-darkblue">
+        <div className="hidden md:flex">
+          <Nav />
+        </div>
+        <div className="md:hidden">
+          <CarouselComp images={eventData.images} />
+        </div>
+
+        <div className="hidden md:flex md:w-4/5 md:mx-auto">
+          {newImageUrls.map((image, index) => {
+            console.log(image);
+            return (
+              <div className="md:max-h-72 md:gap-5 md:mb-6">
+                <img
+                  src={image}
+                  style={{
+                    display: "block",
+                    borderRadius: "0.375rem",
+                    height: "100%",
+                  }}
+                  alt={"eventimage" + index}
+                />
+              </div>
+            );
+          })}
+        </div>
+        <div className="md:w-4/5 md:mx-auto">
+          <div className="mb-2 bg-darkblue md:rounded-md">
             <div className="mx-5 py-3  text-white">
               <h2 className="text-2xl">{eventData.name}</h2>
               <p>
@@ -96,98 +126,111 @@ const Detail = (props) => {
             </div>
           </div>
           <div className="mx-5">
-            <div className="border-b border-orange py-2">
-              {/* <p>
-                <FaMoneyBill className="inline text-darkblue" />
-                &nbsp; {eventData.cost.amount} {eventData.cost.currency} per person per
-                day
-              </p> */}
-              <p className="font-bold italic">
-                <FaBed className="inline text-darkblue" />
-                &nbsp; Accommodation {eventData.accomIncluded ? "" : "NOT"}{" "}
-                included in price.
-              </p>
-            </div>
-            <div className="border-b border-orange py-2">
-              <p className="font-bold">
-                <FaChild className="inline text-darkblue" />
-                &nbsp; For ages {eventData.age.min} - {eventData.age.max} years.
-              </p>
-            </div>
-            <div className="border-b border-orange py-2">
-              <p className="text-sm">{eventData.description}</p>
-            </div>
-            <div className="border-b border-orange py-2">
-              <h4 className="mb-2 font-bold">
-                <FaInfoCircle className="inline text-darkblue" />
-                &nbsp; Other information
-              </h4>
-              <div className="mx-2">
-                {eventData.excursions ? (
-                  //? possibly an unordered list array
-                  <div>
-                    <p>
-                      <FaWalking className="inline text-darkblue" />
-                      &nbsp; Excursions:&nbsp;
+            <div className="md:flex md:flex-row md:justify-between md:gap-3">
+              <div className="md:basis-3/5 md:order-1">
+                <div className="border-b border-orange py-2">
+                  <p className="font-bold italic">
+                    <FaBed className="inline text-darkblue" />
+                    &nbsp; Accommodation {eventData.accomIncluded
+                      ? ""
+                      : "NOT"}{" "}
+                    included in price.
+                  </p>
+                </div>
+                <div className="border-b border-orange py-2">
+                  <p className="font-bold">
+                    <FaChild className="inline text-darkblue" />
+                    &nbsp; For ages {eventData.age.min} - {eventData.age.max}{" "}
+                    years.
+                  </p>
+                </div>
+                <div className="border-b border-orange py-2">
+                  <p className="text-sm">{eventData.description}</p>
+                </div>
+                <div className="border-b border-orange py-2">
+                  <h4 className="mb-2 font-bold">
+                    <FaInfoCircle className="inline text-darkblue" />
+                    &nbsp; Other information
+                  </h4>
+                  <div className="mx-2">
+                    {eventData.excursions ? (
+                      //? possibly an unordered list array
+                      <div>
+                        <p>
+                          <FaWalking className="inline text-darkblue" />
+                          &nbsp; Excursions:&nbsp;
+                        </p>
+                        <p>
+                          <i>{eventData.excursions}</i>
+                        </p>
+                      </div>
+                    ) : null}
+                    <p className="mt-3 text-sm font-bold">
+                      <FaSnowflake className="inline text-darkblue" />
+                      &nbsp; Average temperatures for the period:&nbsp;
                     </p>
-                    <p>
-                      <i>{eventData.excursions}</i>
+                    <p className="text-sm">
+                      {eventData.temperature.low} - {eventData.temperature.high}
+                      &#176;C.
                     </p>
                   </div>
-                ) : null}
-                <p className="mt-3 text-sm font-bold">
-                  <FaSnowflake className="inline text-darkblue" />
-                  &nbsp; Average temperatures for the period:&nbsp;
-                </p>
-                <p className="text-sm">
-                  {eventData.temperature.low} - {eventData.temperature.high}
-                  &#176;C.
-                </p>
+                </div>
+                <div className="border-b border-orange mb-2 py-2">
+                  <h4 className="mb-2 font-bold">
+                    <FaAddressCard className="inline text-darkblue" />
+                    &nbsp; Contact
+                  </h4>
+                  <div className="mx-2">
+                    <p className="text-sm font-bold mb-2">
+                      {eventData.contact.name}
+                    </p>
+                    <p className="text-sm">
+                      <FaEnvelope className="inline text-darkblue" />
+                      &nbsp;&nbsp;
+                      <a href={"mailto:" + eventData.contact.email}>
+                        {eventData.contact.email}
+                      </a>
+                    </p>
+                    {eventData.contact.fbPage ? (
+                      <p>
+                        <FaFacebook className="inline text-darkblue" />
+                        &nbsp;&nbsp;
+                        <a
+                          href={`https://${eventData.contact.fbPage}`}
+                          className="text-xs"
+                        >
+                          {eventData.contact.fbPage}
+                        </a>
+                      </p>
+                    ) : null}
+                    {eventData.contact.website ? (
+                      <p>
+                        <FaGlobe className="inline text-darkblue" />
+                        &nbsp;&nbsp;
+                        <a
+                          href={`https://${eventData.contact.website}`}
+                          // target="_blank"
+                          className="text-xs"
+                        >
+                          {eventData.contact.website}
+                        </a>
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+              <div className="md:order-2 md:w-5/12">
+                <div className="border-b border-orange mb-2 py-2 md:border-none md:mb-0">
+                  <Map
+                    defaultLocation={eventData.location}
+                    zoomLevel={13}
+                    mapHeight={"40vh"}
+                    showPin={true}
+                  />
+                </div>
               </div>
             </div>
-            <div className="border-b border-orange mb-2 py-2">
-              <h4 className="mb-2 font-bold">
-                <FaAddressCard className="inline text-darkblue" />
-                &nbsp; Contact
-              </h4>
-              <div className="mx-2">
-                <p className="text-sm mb-2">{eventData.contact.name}</p>
-                <p className="text-sm">
-                  <FaEnvelope className="inline text-darkblue" />
-                  &nbsp;&nbsp;
-                  <a href="mailto:{eventData.contact.email}">
-                    {eventData.contact.email}
-                  </a>
-                </p>
-                {eventData.contact.fbPage ? (
-                  <p>
-                    <FaFacebook className="inline text-darkblue" />
-                    &nbsp;&nbsp;
-                    <a href={eventData.contact.fbPage} className="text-xs">
-                      {eventData.contact.fbPage}
-                    </a>
-                  </p>
-                ) : null}
-                {eventData.contact.website ? (
-                  <p>
-                    <FaGlobe className="inline text-darkblue" />
-                    &nbsp;&nbsp;
-                    <a href={eventData.contact.website} className="text-xs">
-                      {eventData.contact.website}
-                    </a>
-                  </p>
-                ) : null}
-              </div>
-            </div>
-            <div className="border-b border-orange mb-2 py-2">
-              <Map
-                defaultLocation={eventData.location}
-                zoomLevel={13}
-                mapHeight={"50vh"}
-                showPin={true}
-              />
-            </div>
-            <div className="h-4"></div>
+            <div className="h-4 md:h-10"></div>
           </div>
         </div>
       </div>

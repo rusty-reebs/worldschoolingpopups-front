@@ -51,17 +51,19 @@ const App = () => {
       ) : (
         <>
           <div className="md:mx-6">
-            <h3 className="text-center text-lg md:text-2xl">Events - All</h3>
-            <Link to="map" className="fixed inset-x-0 bottom-8 text-center">
+            <h3 className="text-center text-lg md:text-2xl mb-4">
+              Events - All
+            </h3>
+            <Link
+              to="map"
+              className="fixed inset-x-0 bottom-8 text-center md:text-lg"
+            >
               <Button name="Map" mapIcon="true" />
             </Link>
-            <div className="md:flex md:flex-row md:h-screen">
+            <div className="md:flex md:flex-row md:flex-wrap md:justify-evenly md:h-screen">
               {eventData.map((event) => {
                 return (
-                  <div
-                    key={event._id}
-                    className="mx-5 mb-4 flex flex-col md:flex-row"
-                  >
+                  <div key={event._id}>
                     <Link to={`${event._id}`} key={event._id}>
                       <Card
                         key={event._id}
@@ -77,7 +79,7 @@ const App = () => {
                 );
               })}
             </div>
-            <div className="h-4"></div>
+            <div className="h-12"></div>
           </div>
         </>
       )}

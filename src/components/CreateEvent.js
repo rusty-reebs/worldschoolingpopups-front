@@ -10,7 +10,7 @@ import Input, {
   TextAreaInput,
 } from "./Input";
 import Button from "./Button";
-import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
+import { CloudinaryUploadWidget } from "./CloudinaryUploadWidget";
 
 import {
   CountryDropdown,
@@ -41,12 +41,6 @@ const CreateEvent = (props) => {
   const [contactFbPage, setContactFbPage] = useState("");
   const [errorsArray, setErrorsArray] = useState("");
   const [images, setImages] = useState([]);
-  //   const [imageUrl1, setImageUrl1] = useState("");
-  //   const [image2Url, setImage2Url] = useState("");
-  //   const [image3Url, setImage3Url] = useState("");
-  //   const [image1id, setImage1id] = useState("");
-  //   const [image2id, setImage2id] = useState("");
-  //   const [image3id, setImage3id] = useState("");
   const [checkmark, setCheckmark] = useState([]);
   const [success, setSuccess] = useState(false);
 
@@ -281,7 +275,7 @@ const CreateEvent = (props) => {
           />
           <Input
             name="contactFbPage"
-            placeholder=""
+            placeholder="www.facebook.com/myevent"
             label="Facebook Page"
             type="text"
             value={contactFbPage}
@@ -289,7 +283,7 @@ const CreateEvent = (props) => {
           />
           <Input
             name="contactWebsite"
-            placeholder=""
+            placeholder="www.example.com"
             label="Website"
             type="text"
             value={contactWebsite}

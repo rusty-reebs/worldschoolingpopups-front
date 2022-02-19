@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { crop } from "@cloudinary/url-gen/actions/resize";
+import { focusOn } from "@cloudinary/url-gen/qualifiers/gravity";
 
 const CloudinaryUploadWidget = ({
   setCheckmark,
@@ -16,6 +19,11 @@ const CloudinaryUploadWidget = ({
         maxFiles: 3,
         resourceType: "image",
         maxFileSize: 1000000,
+        multiple: false,
+        cropping: true,
+        croppingCoordinatesMode: "custom",
+        croppingAspectRatio: 1.32,
+        // minImageHeight: 720,
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
@@ -54,4 +62,25 @@ const CloudinaryUploadWidget = ({
   );
 };
 
-export default CloudinaryUploadWidget;
+const transformImages = (imagesArray) => {
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: "dnwnw3z4z",
+    },
+  });
+  if (imagesArray.length > 1) {
+    let processedImages = imagesArray.map((image) => {
+      return cld
+        .image(image.cloudinary_id)
+        .resize(crop().gravity(focusOn("custom")));
+    });
+    return processedImages;
+  } else {
+    let processedImage = cld
+      .image(imagesArray.cloudinary_id)
+      .resize(crop().gravity(focusOn("custom")));
+    return processedImage;
+  }
+};
+
+export { CloudinaryUploadWidget, transformImages };
