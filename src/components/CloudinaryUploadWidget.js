@@ -3,14 +3,8 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import { crop } from "@cloudinary/url-gen/actions/resize";
 import { focusOn } from "@cloudinary/url-gen/qualifiers/gravity";
 
-const CloudinaryUploadWidget = ({
-  setCheckmark,
-  checkmark,
-  images,
-  setImages,
-}) => {
+const CloudinaryUploadWidget = ({ setCheckmark, setImages }) => {
   useEffect(() => {
-    //   let i=1;
     const myWidget = window.cloudinary.createUploadWidget(
       {
         cloudName: process.env.REACT_APP_CLOUDNAME,
@@ -23,7 +17,6 @@ const CloudinaryUploadWidget = ({
         cropping: true,
         croppingCoordinatesMode: "custom",
         croppingAspectRatio: 1.32,
-        // minImageHeight: 720,
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
@@ -33,12 +26,7 @@ const CloudinaryUploadWidget = ({
             url: result.info.url,
             cloudinary_id: result.info.public_id,
           };
-          //   console.log(imageData);
           setImages((prevState) => [...prevState, imageData]);
-          //   console.log(images);
-          //   `setImageUrl${i}`(result.url);
-          //   `setImage${i}id`(result.public_id);
-          //   i = i + 1;
         }
       }
     );

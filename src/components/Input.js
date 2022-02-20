@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  CountryDropdown,
-  RegionDropdown,
-  CountryRegionData,
-} from "react-country-region-selector";
+import { CountryDropdown } from "react-country-region-selector";
 import "../output.css";
 
 const Input = ({

@@ -9,7 +9,7 @@ import { transformImages } from "./CloudinaryUploadWidget";
 import { FaCalendar } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaBed } from "react-icons/fa";
-import { FaChild } from "react-icons/fa";
+// import { FaChild } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 import { FaWalking } from "react-icons/fa";
 import { FaSnowflake } from "react-icons/fa";

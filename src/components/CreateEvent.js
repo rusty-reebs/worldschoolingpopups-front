@@ -3,20 +3,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
 import Nav from "./Nav";
-import Input, {
-  SelectInput,
-  CountryInput,
-  ImageInput,
-  TextAreaInput,
-} from "./Input";
+import Input, { SelectInput, CountryInput, TextAreaInput } from "./Input";
 import Button from "./Button";
 import { CloudinaryUploadWidget } from "./CloudinaryUploadWidget";
-
-import {
-  CountryDropdown,
-  RegionDropdown,
-  CountryRegionData,
-} from "react-country-region-selector";
 import "../output.css";
 
 const CreateEvent = (props) => {
