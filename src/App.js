@@ -1,13 +1,11 @@
-//TODO photo upload dimensions
-//TODO excursions on detail page
-//TODO tailwind md screen size
-
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./output.css";
 import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
+
+const myApi = process.env.REACT_APP_MYAPI;
 
 const App = () => {
   const [eventData, setEventData] = useState([]);
@@ -16,9 +14,7 @@ const App = () => {
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch("http://127.0.0.1:4000/events", {
-          mode: "cors",
-        });
+        let data = await fetch(myApi + "/events");
         let jsonData = await data.json();
         console.log(jsonData);
         setEventData(jsonData);
@@ -88,3 +84,4 @@ const App = () => {
 };
 
 export default App;
+export { myApi };

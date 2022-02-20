@@ -4,6 +4,7 @@ import "../output.css";
 import CarouselComp from "./Carousel";
 import Nav from "./Nav";
 import Map from "./Map";
+import { myApi } from "../App";
 import { transformImages } from "./CloudinaryUploadWidget";
 import { FaCalendar } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
@@ -28,9 +29,7 @@ const Detail = (props) => {
   useEffect(() => {
     try {
       const loadEvent = async () => {
-        let data = await fetch("http://127.0.0.1:4000/events/" + eventId, {
-          mode: "cors",
-        });
+        let data = await fetch(myApi + "/events/" + eventId);
         let jsonData = await data.json();
         console.log(jsonData);
         setEventData(jsonData);
@@ -133,15 +132,15 @@ const Detail = (props) => {
                     included in price.
                   </p>
                 </div>
-                <div className="border-b border-orange py-2">
+                {/* <div className="border-b border-orange py-2">
                   <p className="font-bold">
                     <FaChild className="inline text-darkblue" />
                     &nbsp; For ages {eventData.age.min} - {eventData.age.max}{" "}
                     years.
                   </p>
-                </div>
+                </div> */}
                 <div className="border-b border-orange py-2">
-                  <p className="text-sm">{eventData.description}</p>
+                  <p className="text-base">{eventData.description}</p>
                 </div>
                 <div className="border-b border-orange py-2">
                   <h4 className="mb-2 font-bold">
@@ -152,23 +151,32 @@ const Detail = (props) => {
                     {eventData.excursions ? (
                       //? possibly an unordered list array
                       <div>
-                        <p>
+                        <p className="mt-3 text-sm lg:text-base font-bold">
                           <FaWalking className="inline text-darkblue" />
                           &nbsp; Excursions:&nbsp;
                         </p>
-                        <p>
-                          <i>{eventData.excursions}</i>
-                        </p>
+                        <ul className="list-disc list-inside">
+                          {eventData.excursions.map((excursion) => {
+                            return (
+                              <li className="text-sm lg:text-base italic">
+                                {excursion}
+                              </li>
+                            );
+                          })}
+                        </ul>
                       </div>
                     ) : null}
-                    <p className="mt-3 text-sm font-bold">
+                    <p className="mt-3 text-sm lg:text-base font-bold">
                       <FaSnowflake className="inline text-darkblue" />
                       &nbsp; Average temperatures for the period:&nbsp;
                     </p>
-                    <p className="text-sm">
-                      {eventData.temperature.low} - {eventData.temperature.high}
-                      &#176;C.
-                    </p>
+                    <ul className="list-disc list-inside">
+                      <li className="text-sm lg:text-base italic">
+                        {eventData.temperature.low} -{" "}
+                        {eventData.temperature.high}
+                        &#176;C.
+                      </li>
+                    </ul>
                   </div>
                 </div>
                 <div className="border-b border-orange mb-2 py-2">
@@ -177,23 +185,28 @@ const Detail = (props) => {
                     &nbsp; Contact
                   </h4>
                   <div className="mx-2">
-                    <p className="text-sm font-bold mb-2">
+                    <p className="text-sm lg:text-base font-bold mb-2">
                       {eventData.contact.name}
                     </p>
-                    <p className="text-sm">
-                      <FaEnvelope className="inline text-darkblue" />
-                      &nbsp;&nbsp;
-                      <a href={"mailto:" + eventData.contact.email}>
-                        {eventData.contact.email}
-                      </a>
-                    </p>
+                    {eventData.contact.email ? (
+                      <p className="text-sm lg:text-base">
+                        <FaEnvelope className="inline text-darkblue" />
+                        &nbsp;&nbsp;
+                        <a
+                          href={"mailto:" + eventData.contact.email}
+                          className="hover:underline"
+                        >
+                          {eventData.contact.email}
+                        </a>
+                      </p>
+                    ) : null}
                     {eventData.contact.fbPage ? (
-                      <p>
+                      <p className="break-words">
                         <FaFacebook className="inline text-darkblue" />
                         &nbsp;&nbsp;
                         <a
                           href={`https://${eventData.contact.fbPage}`}
-                          className="text-xs"
+                          className="hover:underline text-xs lg:text-base"
                         >
                           {eventData.contact.fbPage}
                         </a>
@@ -206,7 +219,7 @@ const Detail = (props) => {
                         <a
                           href={`https://${eventData.contact.website}`}
                           // target="_blank"
-                          className="text-xs"
+                          className="hover:underline text-sm lg:text-base"
                         >
                           {eventData.contact.website}
                         </a>

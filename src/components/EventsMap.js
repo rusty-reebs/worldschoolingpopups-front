@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Map from "./Map";
 import Nav from "./Nav";
+import { myApi } from "../App";
 
 const EventsMap = () => {
   const [eventData, setEventData] = useState({});
@@ -9,9 +10,7 @@ const EventsMap = () => {
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch("http://127.0.0.1:4000/events", {
-          mode: "cors",
-        });
+        let data = await fetch(myApi + "/events");
         let jsonData = await data.json();
         setEventData(jsonData);
         setIsLoading(false);

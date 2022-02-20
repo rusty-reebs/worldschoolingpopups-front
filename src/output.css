@@ -655,6 +655,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: fit-content;
 }
 
+.w-max {
+  width: -webkit-max-content;
+  width: max-content;
+}
+
+.w-min {
+  width: -webkit-min-content;
+  width: min-content;
+}
+
 @-webkit-keyframes pulse {
   50% {
     opacity: .5;
@@ -674,6 +684,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .resize {
   resize: both;
+}
+
+.list-inside {
+  list-style-position: inside;
 }
 
 .list-outside {
@@ -729,6 +743,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .whitespace-nowrap {
   white-space: nowrap;
+}
+
+.break-normal {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.break-words {
+  overflow-wrap: break-word;
 }
 
 .rounded-full {
@@ -1004,6 +1027,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(240 248 255 / var(--tw-text-opacity));
+}
+
+.hover\:underline:hover {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .focus\:outline-none:focus {
@@ -1576,5 +1604,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   .lg\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
+  }
+
+  .lg\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }

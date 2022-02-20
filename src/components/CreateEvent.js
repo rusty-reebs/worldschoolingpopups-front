@@ -210,7 +210,6 @@ const CreateEvent = (props) => {
               placeholder=""
               label="Minimum Age"
               type="number"
-              required="true"
               value={ageMin}
               onChange={(e) => setAgeMin(e.target.value)}
             />
@@ -219,7 +218,6 @@ const CreateEvent = (props) => {
               placeholder=""
               label="Maximum Age"
               type="number"
-              required="true"
               value={ageMax}
               onChange={(e) => setAgeMax(e.target.value)}
             />
@@ -269,7 +267,6 @@ const CreateEvent = (props) => {
             placeholder=""
             label="Contact Email"
             type="email"
-            required="true"
             value={contactEmail}
             onChange={(e) => setContactEmail(e.target.value)}
           />
@@ -294,12 +291,6 @@ const CreateEvent = (props) => {
               <CloudinaryUploadWidget
                 setCheckmark={setCheckmark}
                 checkmark={checkmark}
-                // setImageUrl1={setImageUrl1}
-                // setImage2Url={setImage2Url}
-                // setImage3Url={setImage3Url}
-                // setImage1id={setImage1id}
-                // setImage2id={setImage2id}
-                // setImage3id={setImage3id}
                 images={images}
                 setImages={setImages}
               />
