@@ -63,8 +63,8 @@ const Nav = () => {
             <i className="fas fa-star text-yellow"></i>&nbsp;&nbsp;Search Events
           </Link> */}
           <Link
-            to="/events/create"
-            // to="#"
+            // to="/events/create"
+            to="#"
             className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
           >
             <p>List Your Event</p>
