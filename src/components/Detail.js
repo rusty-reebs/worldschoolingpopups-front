@@ -82,33 +82,29 @@ const Detail = (props) => {
     //TODO need conditional for md screen, CarouselComp is false
     return (
       <div className="bg-yellow min-h-screen w-full">
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Nav />
         </div>
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <CarouselComp images={eventData.images} />
         </div>
 
-        <div className="hidden md:flex md:w-4/5 md:mx-auto md:justify-start md:gap-x-5">
+        <div className="hidden lg:flex lg:w-4/5 lg:mx-auto lg:justify-start lg:gap-x-5">
           {newImageUrls.map((image, index) => {
             console.log(image);
             return (
-              <div key={index} className="md:h-72 md:mb-6">
+              <div key={index} className="lg:h-72 lg:mb-6">
                 <img
                   src={image}
-                  style={{
-                    display: "block",
-                    borderRadius: "0.375rem",
-                    height: "100%",
-                  }}
+                  className="block rounded-md h-full"
                   alt={"eventimage" + index}
                 />
               </div>
             );
           })}
         </div>
-        <div className="md:w-4/5 md:mx-auto">
-          <div className="mb-2 bg-darkblue md:rounded-md">
+        <div className="lg:w-4/5 lg:mx-auto">
+          <div className="mb-2 bg-darkblue lg:rounded-md">
             <div className="mx-5 py-3  text-white">
               <h2 className="text-2xl">{eventData.name}</h2>
               <p>
@@ -126,8 +122,8 @@ const Detail = (props) => {
             </div>
           </div>
           <div className="mx-5">
-            <div className="md:flex md:flex-row md:justify-between md:gap-3">
-              <div className="md:basis-3/5 md:order-1">
+            <div className="lg:flex lg:flex-row lg:justify-between lg:gap-3">
+              <div className="lg:basis-3/5 lg:order-1">
                 <div className="border-b border-orange py-2">
                   <p className="font-bold italic">
                     <FaBed className="inline text-darkblue" />
@@ -219,8 +215,8 @@ const Detail = (props) => {
                   </div>
                 </div>
               </div>
-              <div className="md:order-2 md:w-5/12">
-                <div className="border-b border-orange mb-2 py-2 md:border-none md:mb-0">
+              <div className="lg:order-2 lg:w-5/12">
+                <div className="border-b border-orange mb-2 py-2 lg:border-none lg:mb-0">
                   <Map
                     defaultLocation={eventData.location}
                     zoomLevel={13}
@@ -230,7 +226,7 @@ const Detail = (props) => {
                 </div>
               </div>
             </div>
-            <div className="h-4 md:h-10"></div>
+            <div className="h-4 lg:h-10"></div>
           </div>
         </div>
       </div>

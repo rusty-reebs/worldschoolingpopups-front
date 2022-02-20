@@ -33,7 +33,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-yellow min-h-screen w-full ">
+    <div className="bg-yellow min-h-screen w-full">
       <Nav />
       {isLoading ? (
         <div className="bg-yellow flex h-screen w-full align-middle">
@@ -50,17 +50,17 @@ const App = () => {
         </div>
       ) : (
         <>
-          <div className="md:flex md:flex-col md:justify-center md:mx-5">
-            <h3 className="text-center text-lg md:text-2xl mb-4">
+          <div className="lg:flex lg:flex-col lg:justify-center lg:mx-5">
+            <h3 className="text-center text-lg lg:text-2xl mb-4">
               Events - All
             </h3>
             <Link
               to="map"
-              className="fixed inset-x-0 bottom-8 text-center md:text-lg"
+              className="fixed inset-x-0 bottom-8 text-center lg:text-lg"
             >
               <Button name="Map" mapIcon="true" />
             </Link>
-            <div className="flex flex-col gap-y-10 md:flex md:flex-row md:flex-wrap md:gap-y-24 md:gap-x-10 md:justify-start md:h-fit">
+            <div className="flex flex-col gap-y-10 lg:flex lg:flex-row lg:flex-wrap lg:gap-y-24 lg:gap-x-10 lg:justify-start lg:h-fit">
               {eventData.map((event) => {
                 return (
                   <div key={event._id}>

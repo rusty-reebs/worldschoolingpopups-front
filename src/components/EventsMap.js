@@ -60,10 +60,10 @@ const EventsMap = () => {
     return (
       <div className="bg-yellow min-h-screen">
         <Nav />
-        <div className="md:flex md:justify-center md:min-h-screen">
-          <div className="mx-3 md:w-3/4">
+        <div className="lg:flex lg:justify-center lg:min-h-screen">
+          <div className="mx-3 lg:w-3/4">
             <h3 className="text-base text-center mb-4">Events - All</h3>
-            <div className="h-96 border border-orange md:h-4/5">
+            <div className="h-96 border border-orange lg:h-4/5">
               <Map
                 locations={eventLocations}
                 defaultLocation={defaultLocation}

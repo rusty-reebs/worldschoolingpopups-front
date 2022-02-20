@@ -11,7 +11,7 @@ const Card = ({ images, title, country, dateStart, eventType }) => {
   });
 
   return (
-    <div className="mx-5 border-none rounded-md md:h-72">
+    <div className="mx-5 border-none rounded-md lg:h-72">
       <img
         // src={images[0].url}
         src={coverImageUrl}
