@@ -5,7 +5,7 @@ import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
 
-const myApi = process.env.REACT_APP_MYAPI;
+const myApi = process.env.MYAPI;
 
 const App = () => {
   const [eventData, setEventData] = useState([]);

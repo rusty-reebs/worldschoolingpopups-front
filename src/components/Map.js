@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 import LocationPin from "./LocationPin";
 import "../output.css";
 
-const googleApi = process.env.REACT_APP_API_KEY;
+const googleApi = process.env.API_KEY;
 
 const Map = ({ locations, defaultLocation, zoomLevel, mapHeight, showPin }) => {
   const eventPin = {

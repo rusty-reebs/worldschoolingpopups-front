@@ -7,7 +7,7 @@ const CloudinaryUploadWidget = ({ setCheckmark, setImages }) => {
   useEffect(() => {
     const myWidget = window.cloudinary.createUploadWidget(
       {
-        cloudName: process.env.REACT_APP_CLOUDNAME,
+        cloudName: process.env.CLOUDNAME,
         uploadPreset: "mfwa5awq",
         sources: ["local", "url", "google_drive", "facebook", "instagram"],
         maxFiles: 3,
@@ -53,7 +53,7 @@ const CloudinaryUploadWidget = ({ setCheckmark, setImages }) => {
 const transformImages = (imagesArray) => {
   const cld = new Cloudinary({
     cloud: {
-      cloudName: "dnwnw3z4z",
+      cloudName: process.env.CLOUDNAME,
     },
   });
   if (imagesArray.length > 1) {
