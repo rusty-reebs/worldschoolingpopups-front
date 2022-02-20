@@ -27,7 +27,7 @@ const EventsMap = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-yellow h-full">
+      <div className="bg-yellow min-h-screen">
         <Nav />
         <div className="bg-yellow flex h-screen w-full align-middle">
           <div className="flex justify-center flex-col mx-auto">
@@ -58,20 +58,22 @@ const EventsMap = () => {
       lon: -101.3,
     };
     return (
-      <div className="bg-yellow h-screen">
+      <div className="bg-yellow min-h-screen">
         <Nav />
-        <div className="mx-3">
-          <h3 className="text-base text-center mb-4">Events - All</h3>
-          <div className="h-96 border border-orange">
-            <Map
-              locations={eventLocations}
-              defaultLocation={defaultLocation}
-              zoomLevel={1}
-              mapHeight={"100%"}
-              showPin={false}
-            />
+        <div className="md:flex md:justify-center md:min-h-screen">
+          <div className="mx-3 md:w-3/4">
+            <h3 className="text-base text-center mb-4">Events - All</h3>
+            <div className="h-96 border border-orange md:h-4/5">
+              <Map
+                locations={eventLocations}
+                defaultLocation={defaultLocation}
+                zoomLevel={1}
+                mapHeight={"100%"}
+                showPin={false}
+              />
+            </div>
+            <div className="h-4"></div>
           </div>
-          <div className="h-4"></div>
         </div>
       </div>
     );

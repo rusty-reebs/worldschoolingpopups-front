@@ -33,7 +33,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-yellow h-full">
+    <div className="bg-yellow min-h-screen w-full ">
       <Nav />
       {isLoading ? (
         <div className="bg-yellow flex h-screen w-full align-middle">
@@ -50,7 +50,7 @@ const App = () => {
         </div>
       ) : (
         <>
-          <div className="md:mx-6">
+          <div className="md:flex md:flex-col md:justify-center md:mx-5">
             <h3 className="text-center text-lg md:text-2xl mb-4">
               Events - All
             </h3>
@@ -60,7 +60,7 @@ const App = () => {
             >
               <Button name="Map" mapIcon="true" />
             </Link>
-            <div className="md:flex md:flex-row md:flex-wrap md:justify-evenly md:h-screen">
+            <div className="flex flex-col gap-y-10 md:flex md:flex-row md:flex-wrap md:gap-y-24 md:gap-x-10 md:justify-start md:h-fit">
               {eventData.map((event) => {
                 return (
                   <div key={event._id}>
@@ -79,7 +79,7 @@ const App = () => {
                 );
               })}
             </div>
-            <div className="h-12"></div>
+            <div className="h-20 md:h-40"></div>
           </div>
         </>
       )}

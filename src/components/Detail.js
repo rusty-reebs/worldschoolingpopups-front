@@ -81,19 +81,19 @@ const Detail = (props) => {
 
     //TODO need conditional for md screen, CarouselComp is false
     return (
-      <div className="bg-yellow h-full">
-        <div className="hidden md:flex">
+      <div className="bg-yellow min-h-screen w-full">
+        <div className="hidden md:block">
           <Nav />
         </div>
         <div className="md:hidden">
           <CarouselComp images={eventData.images} />
         </div>
 
-        <div className="hidden md:flex md:w-4/5 md:mx-auto">
+        <div className="hidden md:flex md:w-4/5 md:mx-auto md:justify-start md:gap-x-5">
           {newImageUrls.map((image, index) => {
             console.log(image);
             return (
-              <div className="md:max-h-72 md:gap-5 md:mb-6">
+              <div key={index} className="md:h-72 md:mb-6">
                 <img
                   src={image}
                   style={{

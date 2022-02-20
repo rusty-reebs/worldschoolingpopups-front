@@ -15,7 +15,7 @@ const Nav = () => {
   });
   return (
     <div>
-      <nav className="flex flex-wrap items-center justify-between mb-5 p-5 md:w-100 md:px-9 md:mb-9 bg-darkblue">
+      <nav className="flex flex-wrap items-center justify-between mb-5 p-5 md:w-full md:px-9 md:mb-9 bg-darkblue">
         <h1 className="text-white text-lg md:text-2xl">
           <a href="/events">
             <img
