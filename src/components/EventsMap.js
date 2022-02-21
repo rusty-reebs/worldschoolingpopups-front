@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useParams } from "react";
 import Map from "./Map";
 import Nav from "./Nav";
 import { myApi } from "../App";
@@ -7,10 +7,14 @@ const EventsMap = () => {
   const [eventData, setEventData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
+  const params = useParams();
+  console.log(params);
+  const paramsString = params.toString();
+
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(myApi + "/events", {
+        let data = await fetch(myApi + paramsString, {
           "Content-Type": "application/json",
         });
         let jsonData = await data.json();

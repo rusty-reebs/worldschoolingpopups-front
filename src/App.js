@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useParams } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./output.css";
 import Nav from "./components/Nav";
@@ -11,10 +11,14 @@ const App = () => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const params = useParams();
+  console.log(params);
+  const paramsString = params.toString();
+
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(myApi + "/events", {
+        let data = await fetch(myApi + paramsString, {
           "Content-Type": "application/json",
         });
         let jsonData = await data.json();

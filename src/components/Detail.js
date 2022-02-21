@@ -29,7 +29,7 @@ const Detail = (props) => {
   useEffect(() => {
     try {
       const loadEvent = async () => {
-        let data = await fetch(myApi + "/events/" + eventId, {
+        let data = await fetch(myApi + eventId, {
           "Content-Type": "application/json",
         });
         let jsonData = await data.json();
