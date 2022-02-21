@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Map from "./Map";
 import Nav from "./Nav";
-import { myApi } from "../App";
+// import { myApi } from "../App";
 
 const EventsMap = () => {
   const [eventData, setEventData] = useState({});
@@ -10,10 +10,13 @@ const EventsMap = () => {
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(myApi, {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        });
+        let data = await fetch(
+          "https://fierce-reef-16155.herokuapp.com/events",
+          {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          }
+        );
         let jsonData = await data.json();
         setEventData(jsonData);
         setIsLoading(false);

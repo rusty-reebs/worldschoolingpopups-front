@@ -4,7 +4,7 @@ import "../output.css";
 import CarouselComp from "./Carousel";
 import Nav from "./Nav";
 import Map from "./Map";
-import { myApi } from "../App";
+// import { myApi } from "../App";
 import { transformImages } from "./CloudinaryUploadWidget";
 import { FaCalendar } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
@@ -29,10 +29,13 @@ const Detail = (props) => {
   useEffect(() => {
     try {
       const loadEvent = async () => {
-        let data = await fetch(myApi + eventId, {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        });
+        let data = await fetch(
+          "https://fierce-reef-16155.herokuapp.com/events/" + eventId,
+          {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          }
+        );
         let jsonData = await data.json();
         console.log(jsonData);
         setEventData(jsonData);

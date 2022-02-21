@@ -5,7 +5,7 @@ import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
 
-const myApi = process.env.MYAPI;
+// const myApi = process.env.MYAPI;
 
 const App = () => {
   const [eventData, setEventData] = useState([]);
@@ -14,10 +14,13 @@ const App = () => {
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(myApi, {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        });
+        let data = await fetch(
+          "https://fierce-reef-16155.herokuapp.com/events",
+          {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          }
+        );
         let jsonData = await data.json();
         console.log(jsonData);
         setEventData(jsonData);
