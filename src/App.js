@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useParams } from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Outlet, useParams } from "react-router-dom";
 import "./output.css";
 import Nav from "./components/Nav";
 import Card from "./components/Card";

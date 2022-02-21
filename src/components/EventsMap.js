@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useParams } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Map from "./Map";
 import Nav from "./Nav";
 import { myApi } from "../App";
