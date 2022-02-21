@@ -10,7 +10,9 @@ const EventsMap = () => {
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(myApi);
+        let data = await fetch(myApi + "/events", {
+          "Content-Type": "application/json",
+        });
         let jsonData = await data.json();
         setEventData(jsonData);
         setIsLoading(false);

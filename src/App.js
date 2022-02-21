@@ -14,7 +14,9 @@ const App = () => {
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(myApi);
+        let data = await fetch(myApi + "/events", {
+          "Content-Type": "application/json",
+        });
         let jsonData = await data.json();
         console.log(jsonData);
         setEventData(jsonData);
