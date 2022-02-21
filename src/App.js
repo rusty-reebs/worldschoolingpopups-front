@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(myApi + "/events");
+        let data = await fetch(myApi);
         let jsonData = await data.json();
         console.log(jsonData);
         setEventData(jsonData);
