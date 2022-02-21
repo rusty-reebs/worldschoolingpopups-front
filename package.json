@@ -1,5 +1,6 @@
 {
   "name": "worldschoolingpopups-front",
+  "homepage": "https://worldschoolingpopups.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
