@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import "./output.css";
 import Nav from "./components/Nav";
 import Card from "./components/Card";
@@ -11,14 +11,11 @@ const App = () => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const params = useParams();
-  console.log(params);
-  const paramsString = params.toString();
-
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(myApi + paramsString, {
+        let data = await fetch(myApi, {
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         });
         let jsonData = await data.json();

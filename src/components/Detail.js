@@ -30,6 +30,7 @@ const Detail = (props) => {
     try {
       const loadEvent = async () => {
         let data = await fetch(myApi + eventId, {
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         });
         let jsonData = await data.json();
