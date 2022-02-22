@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import ReactGA from "react-ga";
 import "./output.css";
 import Nav from "./components/Nav";
 import Card from "./components/Card";
@@ -10,6 +11,11 @@ import Button from "./components/Button";
 const App = () => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    ReactGA.initialize("G-QS9F8494CF");
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
 
   useEffect(() => {
     try {
