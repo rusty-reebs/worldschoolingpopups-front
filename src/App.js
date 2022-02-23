@@ -1,3 +1,9 @@
+//TODO need a 404 page
+//TODO change submit button to success
+//TODO large screen styling createEvent form
+//TODO clean up Cloudinary js page
+//TODO favicon
+
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import ReactGA from "react-ga";
