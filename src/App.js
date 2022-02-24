@@ -17,6 +17,7 @@ import Button from "./components/Button";
 const App = () => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState("");
 
   // useEffect(() => {
   //   ReactGA.initialize("G-QS9F8494CF");
@@ -26,16 +27,17 @@ const App = () => {
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(
-          "https://fierce-reef-16155.herokuapp.com/events",
-          {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          }
-        );
-        let jsonData = await data.json();
-        console.log(jsonData);
-        setEventData(jsonData);
+        let data = await fetch("/events", {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        });
+        console.log(data);
+        let refinedData = await data.json();
+        console.log(refinedData);
+        // let jsonData = await data.json();
+        // console.log(jsonData);
+        setEventData(refinedData.events);
+        setUser(refinedData.userDetails);
         setIsLoading(false);
       };
       loadEvents();
@@ -48,7 +50,7 @@ const App = () => {
 
   return (
     <div className="bg-yellow min-h-screen w-full">
-      <Nav />
+      <Nav user={user} />
       {isLoading ? (
         <div className="bg-yellow flex h-screen w-full align-middle">
           <div className="flex justify-center flex-col mx-auto">

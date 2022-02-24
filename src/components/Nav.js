@@ -4,7 +4,7 @@ import "../output.css";
 
 const logo = require("../globe-favicon.svg");
 
-const Nav = () => {
+const Nav = ({ user }) => {
   useEffect(() => {
     document.getElementById("hamburger").onclick = function toggleMenu() {
       const navToggle = document.getElementsByClassName("toggle");
@@ -62,38 +62,53 @@ const Nav = () => {
           >
             <i className="fas fa-star text-yellow"></i>&nbsp;&nbsp;Search Events
           </Link> */}
-          <Link
-            // to="/events/create"
-            to="#"
-            className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
-          >
-            <p>List Your Event</p>
-            <p className="text-xs text-yellow">
-              <i className="fas fa-star text-yellow"></i>&nbsp;&nbsp;Coming
-              Soon&nbsp;&nbsp;<i className="fas fa-star text-yellow"></i>
+          {!user ? (
+            <Link
+              to="/newuser"
+              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
+            >
+              <p>List Your Event</p>
+            </Link>
+          ) : null}
+          {user ? (
+            <Link
+              // to="/events/user._id"
+              to="#"
+              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
+            >
+              <p>Manage Your Events</p>
+            </Link>
+          ) : null}
+          {!user ? (
+            <Link
+              to="/register"
+              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
+            >
+              Register
+            </Link>
+          ) : null}
+          {!user ? (
+            <Link
+              to="/login"
+              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
+            >
+              Log In
+            </Link>
+          ) : null}
+          {user ? (
+            <p className="block lg:inline-block text-lightblue px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg">
+              <i className="fas fa-user-circle text-yellow"></i>
+              &nbsp;{user.handle}
             </p>
-          </Link>
-          {/* <Link
-            to="/sign-up"
-            className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
-          >
-            Sign Up
-          </Link> */}
-          {/* <Link
-            to="/log-in"
-            className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
-          >
-            Log In
-          </Link> */}
-          {/* <p className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none">
-            <i className="fas fa-user-circle"></i>username
-          </p>
-          <Link
-            to="/log-out"
-            className="block md:inline-block text-lighterblue hover:text-dark4 px-3 py-3 border-b-2 border-dark2 md:border-none"
-          >
-            Log Out
-          </Link> */}
+          ) : null}
+          {user ? (
+            <Link
+              to="/logout"
+              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
+            >
+              Log Out
+            </Link>
+          ) : null}
         </div>
       </nav>
     </div>

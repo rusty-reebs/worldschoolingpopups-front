@@ -44,7 +44,7 @@ const CreateEvent = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let rawResponse = await fetch("http://127.0.0.1:4000/events", {
+      let rawResponse = await fetch("/events", {
         method: "POST",
         headers: {
           Accept: "application/json, text/plain, */*",
