@@ -13,8 +13,12 @@ const EventsMap = () => {
         let data = await fetch(
           "https://fierce-reef-16155.herokuapp.com/events",
           {
-            // "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
+            method: "GET",
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
+            mode: "cors",
           }
         );
         let refinedData = await data.json();
