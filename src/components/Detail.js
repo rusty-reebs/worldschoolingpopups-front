@@ -32,7 +32,8 @@ const Detail = (props) => {
         let data = await fetch(
           "https://fierce-reef-16155.herokuapp.com/events/" + eventId,
           {
-            "Access-Control-Allow-Origin": "*",
+            mode: "cors",
+            // "Access-Control-Allow-Origin": "*",
             // "Content-Type": "application/json",
           }
         );
