@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Logout = (props) => {
+const Logout = ({ setUser }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,6 +16,7 @@ const Logout = (props) => {
         });
         let responseJson = await rawResponse.json();
         console.log(responseJson);
+        setUser(null);
         navigate("/login");
       } catch (err) {
         if (err) {

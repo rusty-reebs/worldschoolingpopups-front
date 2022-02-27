@@ -4,7 +4,7 @@ import "../output.css";
 import CarouselComp from "./Carousel";
 import Nav from "./Nav";
 import Map from "./Map";
-// import { myApi } from "../App";
+import { myApi } from "../App";
 import { transformImages } from "./CloudinaryUploadWidget";
 import { FaCalendar } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
@@ -29,16 +29,13 @@ const Detail = (props) => {
   useEffect(() => {
     try {
       const loadEvent = async () => {
-        let data = await fetch(
-          "https://fierce-reef-16155.herokuapp.com/events/" + eventId,
-          {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          }
-        );
-        let jsonData = await data.json();
-        console.log(jsonData);
-        setEventData(jsonData);
+        let data = await fetch(myApi + "/events/" + eventId, {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        });
+        let refinedData = await data.json();
+        console.log(refinedData);
+        setEventData(refinedData);
         setIsLoading(false);
       };
 
@@ -65,11 +62,14 @@ const Detail = (props) => {
     );
   } else {
     let transformedImages = transformImages(eventData.images);
-    console.log("first", transformedImages);
-    let newImageUrls = transformedImages.map((image) => {
-      return image.toURL();
-    });
-    console.log("second", newImageUrls);
+    let newImageUrls = [];
+    if (transformedImages.length > 1) {
+      newImageUrls = transformedImages.map((image) => {
+        return image.toURL();
+      });
+    } else {
+      newImageUrls = [transformedImages.toURL()];
+    }
     let startDate = new Date(eventData.date.start);
     let endDate = new Date(eventData.date.end);
     let formattedStart = startDate.toLocaleDateString("en-us", {
@@ -84,7 +84,6 @@ const Detail = (props) => {
       year: "numeric",
     });
 
-    //TODO need conditional for md screen, CarouselComp is false
     return (
       <div className="bg-yellow min-h-screen w-full">
         <div className="hidden lg:block">
@@ -96,7 +95,6 @@ const Detail = (props) => {
 
         <div className="hidden lg:flex lg:w-4/5 lg:mx-auto lg:justify-start lg:gap-x-5">
           {newImageUrls.map((image, index) => {
-            console.log(image);
             return (
               <div key={index} className="lg:h-72 lg:mb-6">
                 <img
@@ -154,8 +152,7 @@ const Detail = (props) => {
                     &nbsp; Other information
                   </h4>
                   <div className="mx-2">
-                    {eventData.excursions ? (
-                      //? possibly an unordered list array
+                    {eventData.excursions.length >= 1 ? (
                       <div>
                         <p className="mt-3 text-sm lg:text-base font-bold">
                           <FaWalking className="inline text-darkblue" />

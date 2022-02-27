@@ -2,8 +2,9 @@ import React from "react";
 import { transformImages } from "./CloudinaryUploadWidget";
 
 const Card = ({ images, title, country, dateStart, eventType }) => {
-  let coverImage = transformImages(images[0]);
-  let coverImageUrl = coverImage.toURL();
+  let coverImage = [images[0]];
+  let transformedImage = transformImages(coverImage);
+  let newUrl = transformedImage.toURL();
   let startDate = new Date(dateStart);
   let formattedDate = startDate.toLocaleDateString("en-us", {
     year: "numeric",
@@ -13,8 +14,7 @@ const Card = ({ images, title, country, dateStart, eventType }) => {
   return (
     <div className="mx-5 border-none rounded-md lg:h-72">
       <img
-        // src={images[0].url}
-        src={coverImageUrl}
+        src={newUrl}
         style={{ display: "block", borderRadius: "0.375rem", height: "100%" }}
         alt="eventimage"
       />

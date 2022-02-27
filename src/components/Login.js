@@ -48,40 +48,44 @@ const Login = (props) => {
     <div className="bg-yellow h-screen">
       <Nav />
       <div className="mx-3">
-        <h3 className="text-base text-center mb-4">Sign in to your account</h3>
-        <p className="text-xs italic font-light text-red mb-2">* required</p>
-        <form onSubmit={handleSubmit}>
-          <Input
-            name="email"
-            placeholder=""
-            label="Email address"
-            type="email"
-            required="true"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Input
-            name="password"
-            placeholder=""
-            label="Password"
-            type="password"
-            required="true"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {errorsArray
-            ? errorsArray.map((error, index) => {
-                return (
-                  <p key={index} className="text-sm text-red font-bold">
-                    {error.msg}
-                  </p>
-                );
-              })
-            : null}
-          <div className="flex justify-center mt-5">
-            <Button name="Submit"></Button>
-          </div>
-        </form>
+        <h3 className="text-base text-center mb-4 lg:text-2xl">
+          Sign in to your account
+        </h3>
+        <div className="lg:w-1/3 lg:mx-auto">
+          <p className="text-xs italic font-light text-red mb-2">* required</p>
+          <form onSubmit={handleSubmit}>
+            <Input
+              name="email"
+              placeholder=""
+              label="Email address"
+              type="email"
+              required="true"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              name="password"
+              placeholder=""
+              label="Password"
+              type="password"
+              required="true"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {errorsArray
+              ? errorsArray.map((error, index) => {
+                  return (
+                    <p key={index} className="text-sm text-red font-bold">
+                      {error.msg}
+                    </p>
+                  );
+                })
+              : null}
+            <div className="flex justify-center mt-5">
+              <Button name="Submit"></Button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

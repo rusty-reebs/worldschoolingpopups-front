@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Routes";
 import "../output.css";
 
 const logo = require("../globe-favicon.svg");
 
-const Nav = ({ user }) => {
+const Nav = (props) => {
+  const user = useContext(AuthContext);
+
   useEffect(() => {
     document.getElementById("hamburger").onclick = function toggleMenu() {
       const navToggle = document.getElementsByClassName("toggle");
@@ -70,13 +73,21 @@ const Nav = ({ user }) => {
               <p>List Your Event</p>
             </Link>
           ) : null}
-          {user ? (
+          {/* {user ? (
             <Link
               // to="/events/user._id"
               to="#"
               className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
             >
               <p>Manage Your Events</p>
+            </Link>
+          ) : null} */}
+          {user ? (
+            <Link
+              to="/events/create"
+              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
+            >
+              <p>Create New Event</p>
             </Link>
           ) : null}
           {!user ? (

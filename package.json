@@ -1,7 +1,6 @@
 {
   "name": "worldschoolingpopups-front",
   "homepage": "https://worldschoolingpopups.com",
-  "proxy": "http://localhost:4000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

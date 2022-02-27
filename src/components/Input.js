@@ -85,8 +85,6 @@ const SelectInput = ({
   label,
   firstOption,
   secondOption,
-  value,
-  defaultValue,
   onChange,
   required,
 }) => {

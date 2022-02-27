@@ -13,13 +13,11 @@ const cld = new Cloudinary({
 });
 
 const CarouselComp = ({ images }) => {
-  console.log(images);
   let processedImages = images.map((image) => {
     return cld
       .image(image.cloudinary_id)
       .resize(crop().gravity(focusOn("custom")));
   });
-  console.log(processedImages);
   return (
     <Carousel showThumbs={false}>
       {processedImages.map((image, index) => {

@@ -45,7 +45,7 @@ const CloudinaryUploadWidget = ({ setCheckmark, setImages }) => {
       id="upload_widget"
       className="bg-darkblue text-white py-1 px-3 border rounded-lg"
     >
-      Upload Images
+      Upload Image
     </button>
   );
 };
@@ -65,7 +65,7 @@ const transformImages = (imagesArray) => {
     return processedImages;
   } else {
     let processedImage = cld
-      .image(imagesArray.cloudinary_id)
+      .image(imagesArray[0].cloudinary_id)
       .resize(crop().gravity(focusOn("custom")));
     return processedImage;
   }

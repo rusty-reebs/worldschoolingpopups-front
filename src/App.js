@@ -1,8 +1,7 @@
-//TODO need a 404 page
-//TODO change submit button to success
-//TODO large screen styling createEvent form
 //TODO clean up Cloudinary js page
 //TODO favicon
+//TODO manage your events
+//TODO excursions input fields
 
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
@@ -12,30 +11,22 @@ import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
 
-// const myApi = process.env.MYAPI;
+const myApi = process.env.REACT_APP_MYAPI;
 
-const App = () => {
+const App = ({ user, setUser }) => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState("");
-
-  // useEffect(() => {
-  //   ReactGA.initialize("G-QS9F8494CF");
-  //   ReactGA.pageview(window.location.pathname + window.location.search);
-  // }, []);
 
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch("/events", {
+        let data = await fetch(myApi + "/events", {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         });
         console.log(data);
         let refinedData = await data.json();
         console.log(refinedData);
-        // let jsonData = await data.json();
-        // console.log(jsonData);
         setEventData(refinedData.events);
         setUser(refinedData.userDetails);
         setIsLoading(false);
@@ -50,7 +41,7 @@ const App = () => {
 
   return (
     <div className="bg-yellow min-h-screen w-full">
-      <Nav user={user} />
+      <Nav />
       {isLoading ? (
         <div className="bg-yellow flex h-screen w-full align-middle">
           <div className="flex justify-center flex-col mx-auto">
@@ -104,4 +95,4 @@ const App = () => {
 };
 
 export default App;
-// export { myApi };
+export { myApi };
