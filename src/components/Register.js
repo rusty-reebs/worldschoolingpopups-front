@@ -24,10 +24,10 @@ const Register = (props) => {
         "https://fierce-reef-16155.herokuapp.com/register",
         {
           method: "POST",
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-          },
+          // headers: {
+          // Accept: "application/json, text/plain, */*",
+          // "Content-Type": "application/json",
+          // },
           body: JSON.stringify({
             email: email,
             handle: handle,
