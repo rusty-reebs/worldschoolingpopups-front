@@ -55,6 +55,7 @@ const CreateEvent = (props) => {
     try {
       let res = await fetch("https://fierce-reef-16155.herokuapp.com/events", {
         method: "POST",
+        credentials: "include",
         headers: {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
