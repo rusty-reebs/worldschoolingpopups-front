@@ -7,21 +7,27 @@ const Logout = ({ setUser }) => {
   useEffect(() => {
     const handleLogout = async () => {
       try {
-        let rawResponse = await fetch("/logout", {
-          method: "GET",
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-          },
-        });
-        let responseJson = await rawResponse.json();
+        let res = await fetch(
+          "https://fierce-reef-16155.herokuapp.com/logout",
+          {
+            method: "GET",
+            credentials: "include",
+            headers: {
+              // Accept: "application/json, text/plain, */*",
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (!res.ok) {
+          const message = `An error has occurred: ${res.status} - ${res.statusText}`;
+          throw new Error(message);
+        }
+        let responseJson = await res.json();
         console.log(responseJson);
         setUser(null);
         navigate("/login");
       } catch (err) {
-        if (err) {
-          console.log(err);
-        }
+        console.log(err.message);
       }
     };
     handleLogout();
