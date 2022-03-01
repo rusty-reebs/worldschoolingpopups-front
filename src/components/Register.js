@@ -24,16 +24,17 @@ const Register = (props) => {
         "https://fierce-reef-16155.herokuapp.com/register",
         {
           method: "POST",
-          headers: {
-            // Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
+          // headers: {
+          // Accept: "application/json, text/plain, */*",
+          // "Content-Type": "application/json",
+          // },
+          // body: JSON.stringify({
+          body: {
             email: email,
             handle: handle,
             password: password,
             confirm: confirm,
-          }),
+          },
         }
       );
       console.log("raw", rawResponse);
