@@ -16,17 +16,20 @@ const Login = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let rawResponse = await fetch("/login", {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: email,
-          password: password,
-        }),
-      });
+      let rawResponse = await fetch(
+        "https://fierce-reef-16155.herokuapp.com/login",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: email,
+            password: password,
+          }),
+        }
+      );
       console.log("raw", rawResponse);
       let responseJson = await rawResponse.json();
       console.log(responseJson);

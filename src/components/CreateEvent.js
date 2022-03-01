@@ -53,35 +53,38 @@ const CreateEvent = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let rawResponse = await fetch("/events", {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          author: user.id,
-          eventName: newEventName,
-          country: country,
-          city: city,
-          lat: lat,
-          lon: lon,
-          eventType: eventType,
-          dateStart: dateStart,
-          dateEnd: dateEnd,
-          accomIncluded: accomIncluded,
-          ageMin: ageMin,
-          ageMax: ageMax,
-          tempHigh: tempHigh,
-          tempLow: tempLow,
-          description: description,
-          contactName: contactName,
-          contactEmail: contactEmail,
-          contactFbPage: contactFbPage,
-          contactWebsite: contactWebsite,
-          images: images,
-        }),
-      });
+      let rawResponse = await fetch(
+        "https://fierce-reef-16155.herokuapp.com/events",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            author: user.id,
+            eventName: newEventName,
+            country: country,
+            city: city,
+            lat: lat,
+            lon: lon,
+            eventType: eventType,
+            dateStart: dateStart,
+            dateEnd: dateEnd,
+            accomIncluded: accomIncluded,
+            ageMin: ageMin,
+            ageMax: ageMax,
+            tempHigh: tempHigh,
+            tempLow: tempLow,
+            description: description,
+            contactName: contactName,
+            contactEmail: contactEmail,
+            contactFbPage: contactFbPage,
+            contactWebsite: contactWebsite,
+            images: images,
+          }),
+        }
+      );
       console.log("raw", rawResponse);
       let responseJson = await rawResponse.json();
       console.log(responseJson);

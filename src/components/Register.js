@@ -20,19 +20,22 @@ const Register = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let rawResponse = await fetch("/register", {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          handle: handle,
-          password: password,
-          confirm: confirm,
-        }),
-      });
+      let rawResponse = await fetch(
+        "https://fierce-reef-16155.herokuapp.com/register",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            handle: handle,
+            password: password,
+            confirm: confirm,
+          }),
+        }
+      );
       console.log("raw", rawResponse);
       let responseJson = await rawResponse.json();
       console.log(responseJson);
