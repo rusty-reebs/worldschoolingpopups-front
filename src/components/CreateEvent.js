@@ -53,41 +53,51 @@ const CreateEvent = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let rawResponse = await fetch(
-        "https://fierce-reef-16155.herokuapp.com/events",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            author: user.id,
-            eventName: newEventName,
-            country: country,
-            city: city,
-            lat: lat,
-            lon: lon,
-            eventType: eventType,
-            dateStart: dateStart,
-            dateEnd: dateEnd,
-            accomIncluded: accomIncluded,
-            ageMin: ageMin,
-            ageMax: ageMax,
-            tempHigh: tempHigh,
-            tempLow: tempLow,
-            description: description,
-            contactName: contactName,
-            contactEmail: contactEmail,
-            contactFbPage: contactFbPage,
-            contactWebsite: contactWebsite,
-            images: images,
-          }),
-        }
-      );
-      console.log("raw", rawResponse);
-      let responseJson = await rawResponse.json();
-      console.log(responseJson);
+      let res = await fetch("https://fierce-reef-16155.herokuapp.com/events", {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          author: user.id,
+          eventName: newEventName,
+          country: country,
+          city: city,
+          lat: lat,
+          lon: lon,
+          eventType: eventType,
+          dateStart: dateStart,
+          dateEnd: dateEnd,
+          accomIncluded: accomIncluded,
+          ageMin: ageMin,
+          ageMax: ageMax,
+          tempHigh: tempHigh,
+          tempLow: tempLow,
+          description: description,
+          contactName: contactName,
+          contactEmail: contactEmail,
+          contactFbPage: contactFbPage,
+          contactWebsite: contactWebsite,
+          images: images,
+        }),
+      });
+      // console.log("raw res", res);
+      if (!res.ok) {
+        const message = `An error has occurred: ${res.status} - ${res.statusText}`;
+        throw new Error(message);
+      }
+
+      let responseJson = await res.json();
+      const result = {
+        status: res.status + " " + res.statusText,
+        headers: {
+          "Content-Type": res.headers.get("Content-Type"),
+          "Content-Length": res.headers.get("Content-Length"),
+        },
+        data: responseJson,
+      };
+      console.log(result);
       if ("errors" in responseJson) {
         setErrorsArray(responseJson.errors);
       } else {
@@ -99,7 +109,7 @@ const CreateEvent = (props) => {
         }, 1000);
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   };
 

@@ -16,26 +16,35 @@ const Login = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let rawResponse = await fetch(
-        "https://fierce-reef-16155.herokuapp.com/login",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: email,
-            password: password,
-          }),
-        }
-      );
-      console.log("raw", rawResponse);
-      let responseJson = await rawResponse.json();
-      console.log(responseJson);
+      let res = await fetch("https://fierce-reef-16155.herokuapp.com/login", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+        }),
+      });
+      // console.log("raw res", res);
+      if (!res.ok) {
+        const message = `An error has occurred: ${res.status} - ${res.statusText}`;
+        throw new Error(message);
+      }
+      let responseJson = await res.json();
+      const result = {
+        status: res.status + " " + res.statusText,
+        headers: {
+          "Content-Type": res.headers.get("Content-Type"),
+          "Content-Length": res.headers.get("Content-Length"),
+        },
+        data: responseJson,
+      };
+      console.log(result);
       if ("errors" in responseJson) {
         setErrorsArray(responseJson.errors);
-        console.log(errorsArray);
       } else {
         setErrorsArray(false);
         setTimeout(() => {
@@ -43,7 +52,7 @@ const Login = (props) => {
         }, 1000);
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   };
 

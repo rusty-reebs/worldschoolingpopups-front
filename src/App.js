@@ -23,14 +23,19 @@ const App = ({ user, setUser }) => {
         let data = await fetch(
           "https://fierce-reef-16155.herokuapp.com/events",
           {
+            method: "GET",
+            credentials: "include",
+            withCredentials: true,
             // mode: "cors",
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
+            headers: {
+              // "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
           }
         );
-        console.log(data);
+        // console.log(data);
         let refinedData = await data.json();
-        console.log(refinedData);
+        // console.log(refinedData);
         setEventData(refinedData.events);
         setUser(refinedData.userDetails);
         setIsLoading(false);

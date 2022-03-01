@@ -20,26 +20,37 @@ const Register = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let rawResponse = await fetch(
+      let res = await fetch(
         "https://fierce-reef-16155.herokuapp.com/register",
         {
           method: "POST",
-          // headers: {
-          // Accept: "application/json, text/plain, */*",
-          // "Content-Type": "application/json",
-          // },
-          // body: JSON.stringify({
-          body: {
+          headers: {
+            Accept: "application/json, text/plain, */*", // this is what client expects back
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
             email: email,
             handle: handle,
             password: password,
             confirm: confirm,
-          },
+          }),
         }
       );
-      console.log("raw", rawResponse);
-      let responseJson = await rawResponse.json();
-      console.log(responseJson);
+      // console.log("raw res", res);
+      if (!res.ok) {
+        const message = `An error has occurred: ${res.status} - ${res.statusText}`;
+        throw new Error(message);
+      }
+      let responseJson = await res.json();
+      const result = {
+        status: res.status + " " + res.statusText,
+        headers: {
+          "Content-Type": res.headers.get("Content-Type"),
+          "Content-Length": res.headers.get("Content-Length"),
+        },
+        data: responseJson,
+      };
+      console.log(result);
       if ("errors" in responseJson) {
         setErrorsArray(responseJson.errors);
       } else {
@@ -50,7 +61,7 @@ const Register = (props) => {
         }, 1000);
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   };
 
