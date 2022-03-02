@@ -1,7 +1,11 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   theme: {
-    extend: {},
+    extend: {
+      aspectRatio: {
+        "4/3": "4 / 3",
+      },
+    },
     fontFamily: {
       source: ['"Source Sans Pro"', "sans-serif"],
       merriweather: ['"Merriweather Sans"', "sans-serif"],

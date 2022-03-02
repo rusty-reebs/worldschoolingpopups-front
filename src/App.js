@@ -66,7 +66,7 @@ const App = ({ user, setUser }) => {
         </div>
       ) : (
         <>
-          <div className="lg:flex lg:flex-col lg:justify-center lg:mx-5">
+          <div className="flex flex-col mx-4 lg:flex lg:flex-col lg:justify-center lg:mx-10">
             <h3 className="text-center text-lg lg:text-2xl mb-4">
               Events - All
             </h3>
@@ -76,7 +76,7 @@ const App = ({ user, setUser }) => {
             >
               <Button name="Map" mapIcon="true" />
             </Link>
-            <div className="flex flex-col gap-y-10 lg:flex lg:flex-row lg:flex-wrap lg:gap-y-24 lg:gap-x-10 lg:justify-start lg:h-fit">
+            <div className="grid grid-cols-1 gap-y-6 lg:grid lg:grid-cols-3 lg:auto-rows-max lg:gap-x-24 lg:gap-y-24 2xl:grid-cols-4">
               {eventData.map((event) => {
                 return (
                   <div key={event._id}>
@@ -95,7 +95,7 @@ const App = ({ user, setUser }) => {
                 );
               })}
             </div>
-            <div className="h-20 md:h-40"></div>
+            <div className="h-24 lg:h-40"></div>
           </div>
         </>
       )}

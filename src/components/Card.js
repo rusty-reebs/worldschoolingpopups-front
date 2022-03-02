@@ -1,4 +1,5 @@
 import React from "react";
+import "../output.css";
 import { transformImages } from "./CloudinaryUploadWidget";
 
 const Card = ({ images, title, country, dateStart, eventType }) => {
@@ -12,13 +13,13 @@ const Card = ({ images, title, country, dateStart, eventType }) => {
   });
 
   return (
-    <div className="mx-5 border-none rounded-md lg:h-72">
+    <div className="border-none rounded-md lg:max-h-72">
       <img
         src={newUrl}
-        style={{ display: "block", borderRadius: "0.375rem", height: "100%" }}
+        className="block rounded-md aspect-4/3 mb-3 lg:max-h-auto"
         alt="eventimage"
       />
-      <h4 className="text-lg mt-2">{title}</h4>
+      <h4 className="text-lg">{title}</h4>
       <div className="flex justify-between">
         <h5 className="text-sm italic">{country}</h5>
         {eventType ? (
