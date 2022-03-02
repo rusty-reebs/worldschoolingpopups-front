@@ -22,7 +22,7 @@ const Card = ({ images, title, country, dateStart, eventType }) => {
       <div className="flex justify-between">
         <h5 className="text-sm italic">{country}</h5>
         {eventType ? (
-          <h5 className="text-sm italic">{formattedDate}</h5>
+          <h5 className="text-sm italic">{dateStart ? formattedDate : null}</h5>
         ) : (
           <h5 className="text-sm italic">Open/continuous dates</h5>
         )}
