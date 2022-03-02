@@ -231,7 +231,6 @@ const CreateEvent = (props) => {
                 placeholder=""
                 label="Average High&nbsp;&#176;C"
                 type="number"
-                required="true"
                 value={tempHigh}
                 onChange={(e) => setTempHigh(e.target.value)}
               />
@@ -240,7 +239,6 @@ const CreateEvent = (props) => {
                 placeholder=""
                 label="Average Low&nbsp;&#176;C"
                 type="number"
-                required="true"
                 value={tempLow}
                 onChange={(e) => setTempLow(e.target.value)}
               />

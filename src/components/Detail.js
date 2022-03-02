@@ -38,7 +38,7 @@ const Detail = (props) => {
           }
         );
         let refinedData = await data.json();
-        console.log(refinedData);
+        // console.log(refinedData);
         setEventData(refinedData);
         setIsLoading(false);
       };
@@ -175,17 +175,21 @@ const Detail = (props) => {
                         </ul>
                       </div>
                     ) : null}
-                    <p className="mt-3 text-sm lg:text-base font-bold">
-                      <FaSnowflake className="inline text-darkblue" />
-                      &nbsp; Average temperatures for the period:&nbsp;
-                    </p>
-                    <ul className="list-disc list-inside">
-                      <li className="text-sm lg:text-base italic">
-                        {eventData.temperature.low} -{" "}
-                        {eventData.temperature.high}
-                        &#176;C.
-                      </li>
-                    </ul>
+                    {eventData.temperature.low && eventData.temperature.high && (
+                      <div>
+                        <p className="mt-3 text-sm lg:text-base font-bold">
+                          <FaSnowflake className="inline text-darkblue" />
+                          &nbsp; Average temperatures for the period:&nbsp;
+                        </p>
+                        <ul className="list-disc list-inside">
+                          <li className="text-sm lg:text-base italic">
+                            {eventData.temperature.low} -{" "}
+                            {eventData.temperature.high}
+                            &#176;C.
+                          </li>
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="border-b border-orange mb-2 py-2">
