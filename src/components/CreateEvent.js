@@ -54,7 +54,7 @@ const CreateEvent = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let res = await fetch(myApi + "/events", {
+      let res = await fetch("https://fierce-reef-16155.herokuapp.com/events", {
         method: "POST",
         credentials: "include",
         headers: {

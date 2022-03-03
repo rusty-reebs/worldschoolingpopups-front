@@ -20,16 +20,19 @@ const App = ({ user, setUser }) => {
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(myApi + "/events", {
-          method: "GET",
-          credentials: "include",
-          withCredentials: true,
-          // mode: "cors",
-          headers: {
-            // "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-        });
+        let data = await fetch(
+          "https://fierce-reef-16155.herokuapp.com/events",
+          {
+            method: "GET",
+            credentials: "include",
+            withCredentials: true,
+            // mode: "cors",
+            headers: {
+              // "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
+          }
+        );
         // console.log(data);
         let refinedData = await data.json();
         // console.log(refinedData);

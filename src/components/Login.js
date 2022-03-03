@@ -17,7 +17,7 @@ const Login = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let res = await fetch(myApi + "/login", {
+      let res = await fetch("https://fierce-reef-16155.herokuapp.com/login", {
         method: "POST",
         credentials: "include",
         headers: {

@@ -10,11 +10,14 @@ const EventsMap = () => {
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(myApi + "/events", {
-          // mode: "cors",
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        });
+        let data = await fetch(
+          "https://fierce-reef-16155.herokuapp.com/events",
+          {
+            // mode: "cors",
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          }
+        );
         let refinedData = await data.json();
         setEventData(refinedData.events);
         setIsLoading(false);

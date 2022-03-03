@@ -29,13 +29,16 @@ const Detail = (props) => {
   useEffect(() => {
     try {
       const loadEvent = async () => {
-        let data = await fetch(myApi + "/events/" + eventId, {
-          method: "GET",
-          // mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        let data = await fetch(
+          "https://fierce-reef-16155.herokuapp.com/events/" + eventId,
+          {
+            method: "GET",
+            // mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         let refinedData = await data.json();
         // console.log(refinedData);
         setEventData(refinedData);
