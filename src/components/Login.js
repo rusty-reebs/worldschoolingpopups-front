@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Nav from "./Nav";
 import Input from "./Input";
 import Button from "./Button";
+import { myApi } from "../App";
 import "../output.css";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +17,7 @@ const Login = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let res = await fetch("https://fierce-reef-16155.herokuapp.com/login", {
+      let res = await fetch(myApi + "/login", {
         method: "POST",
         credentials: "include",
         headers: {

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Nav from "./Nav";
 import Input from "./Input";
 import Button from "./Button";
+import { myApi } from "../App";
+
 import "../output.css";
 import { useNavigate } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
@@ -20,22 +22,19 @@ const Register = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let res = await fetch(
-        "https://fierce-reef-16155.herokuapp.com/register",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json, text/plain, */*", // this is what client expects back
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            handle: handle,
-            password: password,
-            confirm: confirm,
-          }),
-        }
-      );
+      let res = await fetch(myApi + "/register", {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*", // this is what client expects back
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          handle: handle,
+          password: password,
+          confirm: confirm,
+        }),
+      });
       // console.log("raw res", res);
       if (!res.ok) {
         const message = `An error has occurred: ${res.status} - ${res.statusText}`;

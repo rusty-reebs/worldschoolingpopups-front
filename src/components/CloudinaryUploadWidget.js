@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
 import { Cloudinary } from "@cloudinary/url-gen";
-import { crop } from "@cloudinary/url-gen/actions/resize";
+import { crop, scale } from "@cloudinary/url-gen/actions/resize";
 import { focusOn } from "@cloudinary/url-gen/qualifiers/gravity";
 
-const CloudinaryUploadWidget = ({ setCheckmark, setImages }) => {
+const CloudinaryUploadWidget = ({ setCheckmark, images, setImages }) => {
   useEffect(() => {
     const myWidget = window.cloudinary.createUploadWidget(
       {
         cloudName: process.env.REACT_APP_CLOUDNAME,
         uploadPreset: "mfwa5awq",
         sources: ["local", "url", "google_drive", "facebook", "instagram"],
-        maxFiles: 3,
         resourceType: "image",
         maxFileSize: 1000000,
         multiple: false,
         cropping: true,
+        showSkipCropButton: false,
         croppingCoordinatesMode: "custom",
-        croppingAspectRatio: 1.32,
+        croppingAspectRatio: 1.333,
+        croppingShowDimensions: true,
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
@@ -43,7 +44,8 @@ const CloudinaryUploadWidget = ({ setCheckmark, setImages }) => {
     <button
       type="button"
       id="upload_widget"
-      className="bg-darkblue text-white py-1 px-3 border rounded-lg"
+      disabled={images.length === 3}
+      className="bg-darkblue text-white py-1 px-3 border rounded-lg disabled:opacity-50"
     >
       Upload Image
     </button>
@@ -58,15 +60,22 @@ const transformImages = (imagesArray) => {
   });
   if (imagesArray.length > 1) {
     let processedImages = imagesArray.map((image) => {
-      return cld
-        .image(image.cloudinary_id)
-        .resize(crop().gravity(focusOn("custom")));
+      return (
+        cld
+          .image(image.cloudinary_id)
+          // .resize(crop().gravity(focusOn("custom")));
+          .resize(crop().aspectRatio(1.33).gravity(focusOn("custom")))
+          .resize(scale().height(300))
+      );
     });
     return processedImages;
   } else {
     let processedImage = cld
       .image(imagesArray[0].cloudinary_id)
-      .resize(crop().gravity(focusOn("custom")));
+      // .resize(crop().gravity(focusOn("custom")));
+      .resize(crop().aspectRatio(1.33).gravity(focusOn("custom")))
+      .resize(scale().height(300));
+
     return processedImage;
   }
 };

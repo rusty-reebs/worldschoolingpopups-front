@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { myApi } from "../App";
 
 const Logout = ({ setUser }) => {
   const navigate = useNavigate();
@@ -7,17 +8,14 @@ const Logout = ({ setUser }) => {
   useEffect(() => {
     const handleLogout = async () => {
       try {
-        let res = await fetch(
-          "https://fierce-reef-16155.herokuapp.com/logout",
-          {
-            method: "GET",
-            credentials: "include",
-            headers: {
-              // Accept: "application/json, text/plain, */*",
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        let res = await fetch(myApi + "/logout", {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            // Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+        });
         if (!res.ok) {
           const message = `An error has occurred: ${res.status} - ${res.statusText}`;
           throw new Error(message);

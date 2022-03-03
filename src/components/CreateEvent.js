@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../Routes";
 import { useNavigate } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
+import { myApi } from "../App";
 import Nav from "./Nav";
 import Input, { SelectInput, CountryInput, TextAreaInput } from "./Input";
 import Button from "./Button";
@@ -53,7 +54,7 @@ const CreateEvent = (props) => {
     setErrorsArray("");
     e.preventDefault();
     try {
-      let res = await fetch("https://fierce-reef-16155.herokuapp.com/events", {
+      let res = await fetch(myApi + "/events", {
         method: "POST",
         credentials: "include",
         headers: {
