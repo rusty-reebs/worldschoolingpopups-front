@@ -252,6 +252,9 @@ const Detail = (props) => {
                     showPin={true}
                   />
                 </div>
+                <p className="text-right text-xs italic">
+                  * Location may not be exact.
+                </p>
               </div>
             </div>
             <div className="h-4 lg:h-10"></div>
