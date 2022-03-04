@@ -1,6 +1,6 @@
 import React from "react";
 import "../output.css";
-import { transformImages } from "./CloudinaryUploadWidget";
+import { transformImages } from "./Cloudinary";
 
 const Card = ({ images, title, country, dateStart, eventType }) => {
   let coverImage = [images[0]];

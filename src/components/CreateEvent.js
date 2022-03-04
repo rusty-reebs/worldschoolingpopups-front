@@ -7,7 +7,7 @@ import { myApi } from "../App";
 import Nav from "./Nav";
 import Input, { SelectInput, CountryInput, TextAreaInput } from "./Input";
 import Button from "./Button";
-import { CloudinaryUploadWidget } from "./CloudinaryUploadWidget";
+import { CloudinaryUploadWidget } from "./Cloudinary";
 import "../output.css";
 
 const CreateEvent = (props) => {

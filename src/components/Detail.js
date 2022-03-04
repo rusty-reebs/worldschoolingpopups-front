@@ -5,7 +5,7 @@ import CarouselComp from "./Carousel";
 import Nav from "./Nav";
 import Map from "./Map";
 import { myApi } from "../App";
-import { transformImages } from "./CloudinaryUploadWidget";
+import { transformImages } from "./Cloudinary";
 import { FaCalendar } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaBed } from "react-icons/fa";

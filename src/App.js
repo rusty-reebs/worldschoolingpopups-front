@@ -1,4 +1,3 @@
-//TODO clean up Cloudinary js page
 //TODO favicon
 //TODO manage your events
 //TODO excursions input fields
