@@ -57,8 +57,17 @@ const YourEvents = () => {
             Manage Your Events
           </h3>
         </div>
-        // show list of events with thumbnails and edit / edit photos
-      )}
+        {yourEvents.map((event) => {
+            return (
+                <div key={event._id}>
+                    <img src={event.images[0].url}/>
+                    <p>{event.name}</p>
+                    // edit button
+                </div>
+            );
+            })
+      }
+      )
     </div>
   );
 };
