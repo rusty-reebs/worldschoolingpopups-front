@@ -4,6 +4,7 @@ import App from "./App";
 import Detail from "./components/Detail";
 import EventsMap from "./components/EventsMap";
 import CreateEvent from "./components/CreateEvent";
+// import YourEvents from "./components/YourEvents";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import About from "./components/About";
@@ -26,6 +27,7 @@ const RouteSwitch = () => {
           <Route path="events/:eventId" element={<Detail />} />
           <Route path="events/map" element={<EventsMap />} />
           <Route path="events/create" element={<CreateEvent />} />
+          {/* <Route path="events/yourevents" element={<YourEvents />} /> */}
           <Route path="about" element={<About />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />

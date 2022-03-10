@@ -90,6 +90,14 @@ const Nav = (props) => {
               <p>Create New Event</p>
             </Link>
           ) : null}
+          {/* {user ? (
+            <Link
+              to="/events/yourevents"
+              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
+            >
+              <p>Manage Events</p>
+            </Link>
+          ) : null} */}
           {!user ? (
             <Link
               to="/register"
