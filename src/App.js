@@ -1,10 +1,8 @@
-//TODO favicon
 //TODO manage your events
 //TODO excursions input fields
 
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-// import ReactGA from "react-ga";
 import "./output.css";
 import Nav from "./components/Nav";
 import Card from "./components/Card";
