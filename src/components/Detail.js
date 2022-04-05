@@ -200,9 +200,11 @@ const Detail = (props) => {
                     &nbsp; Contact
                   </h4>
                   <div className="mx-2">
-                    <p className="text-sm lg:text-base font-bold mb-2">
-                      {eventData.contact.name}
-                    </p>
+                    {eventData.contact.name ? (
+                      <p className="text-sm lg:text-base font-bold mb-2">
+                        {eventData.contact.name}
+                      </p>
+                    ) : null}
                     {eventData.contact.email ? (
                       <p className="text-sm lg:text-base">
                         <FaEnvelope className="inline text-darkblue" />

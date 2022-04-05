@@ -20,10 +20,7 @@ const About = () => {
               We are not affiliated with any of the events listed.
             </li>
             {/* <li className="mb-3">It receives over 100 visitors per week.</li> */}
-            <li className="mb-6">
-              Features coming soon -- manage and edit your events, and add
-              optional excursions.
-            </li>
+            <li className="mb-6">Search features are coming soon!&nbsp;🔍</li>
             <li>
               For questions or suggestions, please email us at
               <a

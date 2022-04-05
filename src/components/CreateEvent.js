@@ -260,7 +260,6 @@ const CreateEvent = (props) => {
               placeholder=""
               label="Contact Name"
               type="text"
-              required="true"
               value={contactName}
               onChange={(e) => setContactName(e.target.value)}
             />
