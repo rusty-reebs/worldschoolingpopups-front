@@ -84,11 +84,11 @@ const CreateEvent = (props) => {
           images: images,
         }),
       });
-      // console.log("raw res", res);
-      if (!res.ok) {
-        const message = `An error has occurred: ${res.status} - ${res.statusText}`;
-        throw new Error(message);
-      }
+      //! below error handler redirects to catch block and bypasses line 93 onwards
+      // if (!res.ok) {
+      //   const message = `An error has occurred: ${res.status} - ${res.statusText}`;
+      //   throw new Error(message);
+      // }
 
       let responseJson = await res.json();
       const result = {
