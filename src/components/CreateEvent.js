@@ -40,6 +40,7 @@ const CreateEvent = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("user context", user);
     if (!user) {
       navigate("/");
     }

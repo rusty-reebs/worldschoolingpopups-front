@@ -39,7 +39,7 @@ const Nav = (props) => {
             </p>
           </button>
         </div>
-        <div className="toggle hidden lg:flex w-full lg:w-auto text-right text-bold mt-5 lg:mt-0 border-t-2 border-lightblue lg:border-none">
+        <div className="toggle hidden lg:flex w-full lg:w-auto text-center text-bold mt-5 lg:mt-0 border-t-2 border-lightblue lg:border-none">
           <Link
             to="/events"
             className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
@@ -63,20 +63,20 @@ const Nav = (props) => {
             to="#"
             className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
           >
-            <p className="lg:text-center">🔎&nbsp;&nbsp;Search</p>
-            <p className="text-xs lg:text-center">
+            <p>🔎&nbsp;&nbsp;Search</p>
+            <p className="text-xs">
               <i className="fas fa-star text-yellow"></i>&nbsp;Coming
               Soon!&nbsp;<i className="fas fa-star text-yellow"></i>
             </p>
           </Link>
-          {/* {!user ? (
+          {!user ? (
             <Link
               to="/newuser"
               className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
             >
               <p>List Your Event</p>
             </Link>
-          ) : null} */}
+          ) : null}
           {/* {user ? (
             <Link
               // to="/events/user._id"
@@ -86,14 +86,14 @@ const Nav = (props) => {
               <p>Manage Your Events</p>
             </Link>
           ) : null} */}
-          {/* {user ? (
+          {user ? (
             <Link
               to="/events/create"
               className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
             >
               <p>Create New Event</p>
             </Link>
-          ) : null} */}
+          ) : null}
           {/* {user ? (
             <Link
               to="/events/yourevents"
@@ -102,36 +102,36 @@ const Nav = (props) => {
               <p>Manage Events</p>
             </Link>
           ) : null} */}
-          {/* {!user ? (
+          {!user ? (
             <Link
               to="/register"
               className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
             >
               Register
             </Link>
-          ) : null} */}
-          {/* {!user ? (
+          ) : null}
+          {!user ? (
             <Link
               to="/login"
               className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
             >
               Log In
             </Link>
-          ) : null} */}
-          {/* {user ? (
+          ) : null}
+          {user ? (
             <p className="block lg:inline-block text-lightblue px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg">
               <i className="fas fa-user-circle text-yellow"></i>
               &nbsp;{user.handle}
             </p>
-          ) : null} */}
-          {/* {user ? (
+          ) : null}
+          {user ? (
             <Link
               to="/logout"
               className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
             >
               Log Out
             </Link>
-          ) : null} */}
+          ) : null}
         </div>
       </nav>
     </div>

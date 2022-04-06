@@ -32,7 +32,7 @@ const App = ({ user, setUser }) => {
         );
         // console.log(data);
         let refinedData = await data.json();
-        // console.log(refinedData);
+        console.log(refinedData);
         setEventData(refinedData.events);
         setUser(refinedData.userDetails);
         setIsLoading(false);
