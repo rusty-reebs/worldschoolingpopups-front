@@ -9,7 +9,7 @@ import { transformImages } from "./Cloudinary";
 import { FaCalendar } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaBed } from "react-icons/fa";
-// import { FaChild } from "react-icons/fa";
+import { FaChild } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 import { FaWalking } from "react-icons/fa";
 import { FaSnowflake } from "react-icons/fa";
@@ -144,13 +144,15 @@ const Detail = (props) => {
                     included in price.
                   </p>
                 </div>
-                {/* <div className="border-b border-orange py-2">
-                  <p className="font-bold">
-                    <FaChild className="inline text-darkblue" />
-                    &nbsp; For ages {eventData.age.min} - {eventData.age.max}{" "}
-                    years.
-                  </p>
-                </div> */}
+                {eventData.age.min && eventData.age.max ? (
+                  <div className="border-b border-orange py-2">
+                    <p className="font-bold">
+                      <FaChild className="inline text-darkblue" />
+                      &nbsp; For ages {eventData.age.min} - {eventData.age.max}{" "}
+                      years.
+                    </p>
+                  </div>
+                ) : null}
                 <div className="border-b border-orange py-2">
                   <p className="text-base">{eventData.description}</p>
                 </div>
