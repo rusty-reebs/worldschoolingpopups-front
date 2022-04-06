@@ -69,14 +69,14 @@ const Nav = (props) => {
               Soon!&nbsp;<i className="fas fa-star text-yellow"></i>
             </p>
           </Link>
-          {!user ? (
+          {/* {!user ? (
             <Link
               to="/newuser"
               className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
             >
               <p>List Your Event</p>
             </Link>
-          ) : null}
+          ) : null} */}
           {/* {user ? (
             <Link
               // to="/events/user._id"
@@ -86,14 +86,14 @@ const Nav = (props) => {
               <p>Manage Your Events</p>
             </Link>
           ) : null} */}
-          {user ? (
+          {/* {user ? (
             <Link
               to="/events/create"
               className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
             >
               <p>Create New Event</p>
             </Link>
-          ) : null}
+          ) : null} */}
           {/* {user ? (
             <Link
               to="/events/yourevents"
@@ -102,36 +102,36 @@ const Nav = (props) => {
               <p>Manage Events</p>
             </Link>
           ) : null} */}
-          {!user ? (
+          {/* {!user ? (
             <Link
               to="/register"
               className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
             >
               Register
             </Link>
-          ) : null}
-          {!user ? (
+          ) : null} */}
+          {/* {!user ? (
             <Link
               to="/login"
               className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
             >
               Log In
             </Link>
-          ) : null}
-          {user ? (
+          ) : null} */}
+          {/* {user ? (
             <p className="block lg:inline-block text-lightblue px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg">
               <i className="fas fa-user-circle text-yellow"></i>
               &nbsp;{user.handle}
             </p>
-          ) : null}
-          {user ? (
+          ) : null} */}
+          {/* {user ? (
             <Link
               to="/logout"
               className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
             >
               Log Out
             </Link>
-          ) : null}
+          ) : null} */}
         </div>
       </nav>
     </div>
