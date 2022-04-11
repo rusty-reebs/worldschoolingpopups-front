@@ -121,7 +121,15 @@ const Detail = (props) => {
                 &nbsp;&nbsp;
                 {eventData.location.city}, {eventData.location.country}
               </p>
-              {eventData.date.start ? (
+              <p>
+                <FaCalendar className="inline text-white" />
+                &nbsp;&nbsp;
+                {eventData.date.eventType === "Fixed Session" &&
+                eventData.date.start
+                  ? formattedStart + " - " + formattedEnd
+                  : eventData.date.eventType}
+              </p>
+              {/* {eventData.date.start ? (
                 <p>
                   <FaCalendar className="inline text-white" />
                   &nbsp;&nbsp;
@@ -129,7 +137,7 @@ const Detail = (props) => {
                     ? formattedStart + " - " + formattedEnd
                     : "Open-ended / Continuous"}
                 </p>
-              ) : null}
+              ) : null} */}
             </div>
           </div>
           <div className="mx-5">
