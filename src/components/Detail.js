@@ -10,9 +10,9 @@ import { FaCalendar } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaBed } from "react-icons/fa";
 import { FaChild } from "react-icons/fa";
-import { FaInfoCircle } from "react-icons/fa";
-import { FaWalking } from "react-icons/fa";
-import { FaSnowflake } from "react-icons/fa";
+// import { FaInfoCircle } from "react-icons/fa";
+// import { FaWalking } from "react-icons/fa";
+// import { FaSnowflake } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -156,7 +156,7 @@ const Detail = (props) => {
                 <div className="border-b border-orange py-2">
                   <p className="text-base">{eventData.description}</p>
                 </div>
-                <div className="border-b border-orange py-2">
+                {/* <div className="border-b border-orange py-2">
                   <h4 className="mb-2 font-bold">
                     <FaInfoCircle className="inline text-darkblue" />
                     &nbsp; Other information
@@ -195,7 +195,7 @@ const Detail = (props) => {
                       </div>
                     )}
                   </div>
-                </div>
+                </div> */}
                 <div className="border-b border-orange mb-2 py-2">
                   <h4 className="mb-2 font-bold">
                     <FaAddressCard className="inline text-darkblue" />
