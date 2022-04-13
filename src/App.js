@@ -13,6 +13,7 @@ const myApi = process.env.REACT_APP_PROD_API;
 const App = ({ user, setUser }) => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [records, setRecords] = useState(0);
 
   useEffect(() => {
     try {
@@ -33,6 +34,7 @@ const App = ({ user, setUser }) => {
         // console.log(data);
         let refinedData = await data.json();
         console.log(refinedData);
+        setRecords(refinedData.records);
         setEventData(refinedData.events);
         setUser(refinedData.userDetails);
         setIsLoading(false);
@@ -65,7 +67,7 @@ const App = ({ user, setUser }) => {
         <>
           <div className="flex flex-col mx-4 lg:flex lg:flex-col lg:justify-center lg:mx-10">
             <h3 className="text-center text-lg lg:text-2xl mb-4">
-              Events - All
+              Events - All <p className="inline-block text-base">({records})</p>
             </h3>
             <Link
               to="map"
