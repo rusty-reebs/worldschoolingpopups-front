@@ -128,6 +128,9 @@ const Detail = (props) => {
                 eventData.date.start
                   ? formattedStart + " - " + formattedEnd
                   : eventData.date.eventType}
+                {eventData.date.eventType === "Open / Continuous" ? (
+                  <span> Dates</span>
+                ) : null}
               </p>
               {/* {eventData.date.start ? (
                 <p>

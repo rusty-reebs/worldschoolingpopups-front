@@ -71,7 +71,7 @@ const App = ({ user, setUser }) => {
             </h3>
             <Link
               to="map"
-              className="fixed inset-x-0 bottom-8 text-center lg:text-lg"
+              className="fixed inset-x-0 bottom-8 z-10 text-center lg:text-lg"
             >
               <Button name="Map" mapIcon="true" />
             </Link>
