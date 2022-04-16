@@ -7,6 +7,7 @@ const Card = ({ images, title, country, dateStart, eventType }) => {
   let transformedImage = transformImages(coverImage);
   let newUrl = transformedImage.toURL();
   let startDate = new Date(dateStart);
+  startDate.setMinutes(startDate.getMinutes() + startDate.getTimezoneOffset());
   let today = new Date();
   let formattedDate = startDate.toLocaleDateString("en-us", {
     year: "numeric",

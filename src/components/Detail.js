@@ -78,13 +78,19 @@ const Detail = (props) => {
     }
     let startDate = new Date(eventData.date.start);
     let endDate = new Date(eventData.date.end);
+    startDate.setMinutes(
+      startDate.getMinutes() + startDate.getTimezoneOffset()
+    );
+    endDate.setMinutes(endDate.getMinutes() + endDate.getTimezoneOffset());
     let formattedStart = startDate.toLocaleDateString("en-us", {
+      // let formattedStart = startDate.toDateString("en-us", {
       month: "short",
       day: "numeric",
       year: "numeric",
     });
 
     let formattedEnd = endDate.toLocaleDateString("en-us", {
+      // let formattedEnd = endDate.toDateString("en-us", {
       month: "short",
       day: "numeric",
       year: "numeric",
