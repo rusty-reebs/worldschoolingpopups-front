@@ -1,5 +1,6 @@
-//TODO manage your events
-//TODO excursions input fields
+//TODO search by region
+//TODO clean up unnecessary files
+//TODO detail page should have correct paragraph/line spacing
 
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
