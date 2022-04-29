@@ -2,6 +2,7 @@
 //TODO subtitle - your go-to resource for worldwide events
 //TODO Events - All (50) Last update: xxx
 //TODO Backup MongoDB
+//TODO back button returns to previous position in scroll
 //TODO clean up unnecessary files
 //TODO detail page should have correct paragraph/line spacing
 
