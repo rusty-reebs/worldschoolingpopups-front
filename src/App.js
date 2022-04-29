@@ -1,4 +1,7 @@
 //TODO search by region
+//TODO subtitle - your go-to resource for worldwide events
+//TODO Events - All (50) Last update: xxx
+//TODO Backup MongoDB
 //TODO clean up unnecessary files
 //TODO detail page should have correct paragraph/line spacing
 
