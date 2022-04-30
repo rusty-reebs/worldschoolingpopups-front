@@ -3,7 +3,6 @@
 //TODO Events - All (50) Last update: xxx
 //TODO Backup MongoDB
 //TODO back button returns to previous position in scroll
-//TODO clean up unnecessary files
 //TODO detail page should have correct paragraph/line spacing
 
 import React, { useEffect, useState } from "react";
@@ -27,16 +26,11 @@ const App = ({ user, setUser }) => {
           "https://fierce-reef-16155.herokuapp.com/events",
           {
             method: "GET",
-            credentials: "include",
-            withCredentials: true,
-            // mode: "cors",
             headers: {
-              // "Access-Control-Allow-Origin": "*",
               "Content-Type": "application/json",
             },
           }
         );
-        // console.log(data);
         let refinedData = await data.json();
         console.log(refinedData);
         setRecords(refinedData.records);
