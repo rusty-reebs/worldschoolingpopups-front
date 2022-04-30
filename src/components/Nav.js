@@ -16,16 +16,23 @@ const Nav = (props) => {
   return (
     <div>
       <nav className="flex flex-wrap items-center justify-between mb-5 p-5 lg:w-full lg:px-9 lg:mb-9 bg-darkblue">
-        <h1 className="text-white text-lg lg:text-2xl">
-          <a href="/events">
-            <img
-              src={logo.default}
-              style={{ display: "inline", height: 30 }}
-              alt="logo"
-            />
-          </a>
-          &nbsp;worldschoolingpopups.com
-        </h1>
+        <div className="flex flex-col">
+          <h1 className="text-white text-lg lg:text-2xl">
+            <a href="/events">
+              <img
+                src={logo.default}
+                style={{ display: "inline", height: 30 }}
+                alt="logo"
+              />
+            </a>
+            &nbsp;worldschoolingpopups.com
+          </h1>
+          <h3 className="text-white text-sm italic pl-9 -mt-1.5 lg:mt-0">
+            <span className="underline decoration-yellow decoration-2 underline-offset-1">
+              your go-to resource for events!
+            </span>
+          </h3>
+        </div>
         <div className="flex lg:hidden text-white">
           <button id="hamburger">
             <p className="toggle block text-2xl">
