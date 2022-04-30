@@ -9,6 +9,10 @@ Date completed: March 3, 2022
 
 **See it live at (https://worldschoolingpopups.com)**  
 
+**Backend repo (https://github.com/rusty-reebs/worldschoolingpopups)**
+
+***Update**: April 30, 2022. Removed authentication from public-facing front-end. Built an authenticated admin front-end instead.*
+
 Objectives: Build an Express REST API with JSON web token (`jwt`) authentication. The `jwt` is passed as a header cookie. All users have permission to browse the events, while only registered users may post new events. The frontend is written in React and uses conditional rendering, the Google Maps API, and the Cloudinary API for image handling.  
 
 ### TIL Things I Learned
