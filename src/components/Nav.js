@@ -1,13 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../Routes";
 import "../output.css";
 
-const logo = require("../globe-favicon.svg");
+const logo = require("../img/globe-favicon.svg");
 
 const Nav = (props) => {
-  const user = useContext(AuthContext);
-
   useEffect(() => {
     document.getElementById("hamburger").onclick = function toggleMenu() {
       const navToggle = document.getElementsByClassName("toggle");
@@ -69,69 +66,6 @@ const Nav = (props) => {
               Soon!&nbsp;<i className="fas fa-star text-yellow"></i>
             </p>
           </Link>
-          {/* {!user ? (
-            <Link
-              to="/newuser"
-              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
-            >
-              <p>List Your Event</p>
-            </Link>
-          ) : null} */}
-          {/* {user ? (
-            <Link
-              // to="/events/user._id"
-              to="#"
-              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
-            >
-              <p>Manage Your Events</p>
-            </Link>
-          ) : null} */}
-          {/* {user ? (
-            <Link
-              to="/events/create"
-              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
-            >
-              <p>Create New Event</p>
-            </Link>
-          ) : null} */}
-          {/* {user ? (
-            <Link
-              to="/events/yourevents"
-              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
-            >
-              <p>Manage Events</p>
-            </Link>
-          ) : null} */}
-          {/* {!user ? (
-            <Link
-              to="/register"
-              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
-            >
-              Register
-            </Link>
-          ) : null} */}
-          {/* {!user ? (
-            <Link
-              to="/login"
-              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
-            >
-              Log In
-            </Link>
-          ) : null} */}
-          {/* {user ? (
-            <p className="block lg:inline-block text-lightblue px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg">
-              <i className="fas fa-user-circle text-yellow"></i>
-              &nbsp;{user.handle}
-            </p>
-          ) : null} */}
-          {/* {user ? (
-            <Link
-              to="/logout"
-              className="block lg:inline-block text-lightblue hover:text-white px-3 py-3 border-b-2 border-lightblue lg:border-none lg:text-lg"
-            >
-              Log Out
-            </Link>
-          ) : null} */}
         </div>
       </nav>
     </div>

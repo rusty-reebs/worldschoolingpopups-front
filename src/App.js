@@ -35,7 +35,6 @@ const App = ({ user, setUser }) => {
         console.log(refinedData);
         setRecords(refinedData.records);
         setEventData(refinedData.events);
-        setUser(refinedData.userDetails);
         setIsLoading(false);
       };
       loadEvents();
