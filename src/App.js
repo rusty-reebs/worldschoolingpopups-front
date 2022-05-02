@@ -1,6 +1,9 @@
-//TODO search by region
-//TODO subtitle - your go-to resource for worldwide events
-//TODO Events - All (50) Last update: xxx
+//TODO search by region, when clicked, render component between navbar and Events - All.
+//TODO subtitle - your go-to resource for worldwide events --> DONE
+//TODO Manage listings on Admin site, to allow for edits
+//TODO Events - All (50) Last update: xxx --> DONE
+//TODO Card - change FINISHED from startDate to endDate
+//TODO fix grid on medium screens
 //TODO Backup MongoDB
 //TODO back button returns to previous position in scroll
 //TODO detail page should have correct paragraph/line spacing
@@ -12,17 +15,19 @@ import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
 
-const myApi = process.env.REACT_APP_PROD_API;
+const myApi = process.env.REACT_APP_DEV_API;
 
 const App = ({ user, setUser }) => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [records, setRecords] = useState(0);
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   useEffect(() => {
     try {
       const loadEvents = async () => {
         let data = await fetch(
+          // myApi + "/events",
           "https://fierce-reef-16155.herokuapp.com/events",
           {
             method: "GET",
@@ -35,6 +40,19 @@ const App = ({ user, setUser }) => {
         console.log(refinedData);
         setRecords(refinedData.records);
         setEventData(refinedData.events);
+
+        // manipulate last updated date
+        let lastUpdated = new Date(refinedData.lastUpdated);
+        lastUpdated.setMinutes(
+          lastUpdated.getMinutes() + lastUpdated.getTimezoneOffset()
+        );
+        let formattedLastUpdated = lastUpdated.toLocaleDateString("en-us", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
+        setLastUpdated(formattedLastUpdated);
+
         setIsLoading(false);
       };
       loadEvents();
@@ -64,9 +82,15 @@ const App = ({ user, setUser }) => {
       ) : (
         <>
           <div className="flex flex-col mx-4 lg:flex lg:flex-col lg:justify-center lg:mx-10">
-            <h3 className="text-center text-lg lg:text-2xl mb-4">
-              Events - All <p className="inline-block text-base">({records})</p>
-            </h3>
+            <div className="text-center mb-4 lg:grid lg:grid-cols-3 lg:justify-items-center">
+              <h3 className="text-lg lg:text-2xl lg:col-start-2">
+                Events - All{" "}
+                <p className="inline-block text-base">({records})</p>
+              </h3>
+              <h3 className="italic text-sm lg:mt-auto lg:ml-auto lg:text-base">
+                Last updated: {lastUpdated}
+              </h3>
+            </div>
             <Link
               to="map"
               className="fixed inset-x-0 bottom-8 z-10 text-center lg:text-lg"
