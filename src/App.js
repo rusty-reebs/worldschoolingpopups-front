@@ -1,8 +1,6 @@
 //TODO search by region, when clicked, render component between navbar and Events - All.
-//TODO subtitle - your go-to resource for worldwide events --> DONE
 //TODO Manage listings on Admin site, to allow for edits
-//TODO Events - All (50) Last update: xxx --> DONE
-//TODO Card - change FINISHED from startDate to endDate
+//TODO Card - change FINISHED from startDate to endDate --> DONE
 //TODO fix grid on medium screens
 //TODO Backup MongoDB
 //TODO back button returns to previous position in scroll
@@ -109,6 +107,7 @@ const App = ({ user, setUser }) => {
                         country={event.location.country}
                         eventType={event.date.eventType}
                         dateStart={event.date.start}
+                        dateEnd={event.date.end}
                       />
                     </Link>
                     <Outlet />

@@ -2,17 +2,19 @@ import React from "react";
 import "../output.css";
 import { transformImages } from "./Cloudinary";
 
-const Card = ({ images, title, country, dateStart, eventType }) => {
+const Card = ({ images, title, country, dateStart, dateEnd, eventType }) => {
   let coverImage = [images[0]];
   let transformedImage = transformImages(coverImage);
   let newUrl = transformedImage.toURL();
+  let today = new Date();
   let startDate = new Date(dateStart);
   startDate.setMinutes(startDate.getMinutes() + startDate.getTimezoneOffset());
-  let today = new Date();
   let formattedDate = startDate.toLocaleDateString("en-us", {
     year: "numeric",
     month: "long",
   });
+  let endDate = new Date(dateEnd);
+  endDate.setMinutes(endDate.getMinutes() + endDate.getTimezoneOffset());
 
   return (
     <div className="border-none rounded-md lg:max-h-72">
@@ -22,7 +24,7 @@ const Card = ({ images, title, country, dateStart, eventType }) => {
           className="block rounded-md aspect-4/3 mb-3 lg:max-h-auto"
           alt="eventimage"
         />
-        {today > startDate && dateStart != null ? (
+        {today > endDate && dateStart != null ? (
           <div className="bg-red absolute font-bold top-0 right-0 text-white text-sm m-3 p-3 rounded-md">
             COMPLETED
           </div>
