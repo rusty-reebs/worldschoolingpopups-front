@@ -1,10 +1,7 @@
 //TODO search by region, when clicked, render component between navbar and Events - All.
-//TODO Manage listings on Admin site, to allow for edits
-//TODO Card - change FINISHED from startDate to endDate --> DONE
 //TODO fix grid on medium screens
 //TODO Backup MongoDB
 //TODO back button returns to previous position in scroll
-//TODO detail page should have correct paragraph/line spacing
 
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
@@ -13,7 +10,8 @@ import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
 
-const myApi = process.env.REACT_APP_DEV_API;
+// const myApi = process.env.REACT_APP_DEV_API; //! development server
+const myApi = process.env.REACT_APP_PROD_API; //! production server
 
 const App = ({ user, setUser }) => {
   const [eventData, setEventData] = useState([]);
@@ -24,16 +22,12 @@ const App = ({ user, setUser }) => {
   useEffect(() => {
     try {
       const loadEvents = async () => {
-        let data = await fetch(
-          // myApi + "/events",
-          "https://fierce-reef-16155.herokuapp.com/events",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        let data = await fetch(myApi + "/events", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         let refinedData = await data.json();
         console.log(refinedData);
         setRecords(refinedData.records);
