@@ -10,9 +10,6 @@ import { FaCalendar } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaBed } from "react-icons/fa";
 import { FaChild } from "react-icons/fa";
-// import { FaInfoCircle } from "react-icons/fa";
-// import { FaWalking } from "react-icons/fa";
-// import { FaSnowflake } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -24,7 +21,6 @@ const Detail = (props) => {
 
   let params = useParams();
   let eventId = params.eventId.toString();
-  // if params.eventId not true then use url string
 
   useEffect(() => {
     try {
@@ -40,7 +36,6 @@ const Detail = (props) => {
           }
         );
         let refinedData = await data.json();
-        // console.log(refinedData);
         setEventData(refinedData);
         setIsLoading(false);
       };
@@ -136,15 +131,6 @@ const Detail = (props) => {
                   <span> Dates</span>
                 ) : null}
               </p>
-              {/* {eventData.date.start ? (
-                <p>
-                  <FaCalendar className="inline text-white" />
-                  &nbsp;&nbsp;
-                  {eventData.date.eventType
-                    ? formattedStart + " - " + formattedEnd
-                    : "Open-ended / Continuous"}
-                </p>
-              ) : null} */}
             </div>
           </div>
           <div className="mx-5">
@@ -169,48 +155,10 @@ const Detail = (props) => {
                   </div>
                 ) : null}
                 <div className="border-b border-orange py-2">
-                  <p className="text-base">{eventData.description}</p>
+                  <p className="text-base whitespace-pre-line">
+                    {eventData.description}
+                  </p>
                 </div>
-                {/* <div className="border-b border-orange py-2">
-                  <h4 className="mb-2 font-bold">
-                    <FaInfoCircle className="inline text-darkblue" />
-                    &nbsp; Other information
-                  </h4>
-                  <div className="mx-2">
-                    {eventData.excursions.length >= 1 ? (
-                      <div>
-                        <p className="mt-3 text-sm lg:text-base font-bold">
-                          <FaWalking className="inline text-darkblue" />
-                          &nbsp; Excursions:&nbsp;
-                        </p>
-                        <ul className="list-disc list-inside">
-                          {eventData.excursions.map((excursion) => {
-                            return (
-                              <li className="text-sm lg:text-base italic">
-                                {excursion}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                    ) : null}
-                    {eventData.temperature.low && eventData.temperature.high && (
-                      <div>
-                        <p className="mt-3 text-sm lg:text-base font-bold">
-                          <FaSnowflake className="inline text-darkblue" />
-                          &nbsp; Average temperatures for the period:&nbsp;
-                        </p>
-                        <ul className="list-disc list-inside">
-                          <li className="text-sm lg:text-base italic">
-                            {eventData.temperature.low} -{" "}
-                            {eventData.temperature.high}
-                            &#176;C.
-                          </li>
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                </div> */}
                 <div className="border-b border-orange mb-2 py-2">
                   <h4 className="mb-2 font-bold">
                     <FaAddressCard className="inline text-darkblue" />
