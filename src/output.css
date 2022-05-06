@@ -1105,6 +1105,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: 80%;
   }
 
+  .lg\:h-96 {
+    height: 24rem;
+  }
+
   .lg\:max-h-72 {
     max-height: 18rem;
   }

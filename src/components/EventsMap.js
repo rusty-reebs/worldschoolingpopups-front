@@ -57,16 +57,17 @@ const EventsMap = () => {
     });
     let defaultLocation = {
       address: "",
-      lat: 47.116,
+      lat: 25.116,
       lon: -101.3,
     };
     return (
       <div className="bg-yellow min-h-screen">
         <Nav />
         <div className="lg:flex lg:justify-center lg:min-h-screen">
-          <div className="mx-3 lg:w-3/4">
-            <h3 className="text-base text-center mb-4">Events - All</h3>
-            <div className="h-96 border border-orange lg:h-4/5">
+          <div className="lg:w-3/4">
+            <h3 className="text-base text-center mb-4 mx-3">Events - All</h3>
+            {/* <div className="h-96 border border-orange lg:h-4/5"> */}
+            <div className="h-screen border border-orange lg:h-4/5">
               <Map
                 locations={eventLocations}
                 defaultLocation={defaultLocation}
