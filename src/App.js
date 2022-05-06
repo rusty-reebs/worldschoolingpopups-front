@@ -1,7 +1,7 @@
+//TODO back button returns to previous position in scroll
 //TODO search by region, when clicked, render component between navbar and Events - All.
 //TODO fix grid on medium screens
 //TODO Backup MongoDB
-//TODO back button returns to previous position in scroll
 
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
