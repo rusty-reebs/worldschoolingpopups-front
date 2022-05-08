@@ -20,7 +20,10 @@ const About = () => {
               We are not affiliated with any of the events listed.
             </li>
             {/* <li className="mb-3">It receives over 100 visitors per week.</li> */}
-            <li className="mb-6">Search features are coming soon!&nbsp;🔍</li>
+            <li className="mb-6">
+              COMING SOON! -- 🔍&nbsp;Search features and return to previous
+              scroll position when back button is pressed.
+            </li>
             <li>
               For questions or suggestions, please email us at
               <a
