@@ -1,5 +1,6 @@
 //TODO back button returns to previous position in scroll
 //TODO search by region, when clicked, render component between navbar and Events - All.
+//TODO search by date type -- Fixed, Continous / Open-Ended, Full School Year
 //TODO fix grid on medium screens
 //TODO Backup MongoDB
 
