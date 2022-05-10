@@ -75,12 +75,12 @@ const App = ({ user, setUser }) => {
       ) : (
         <>
           <div className="flex flex-col mx-4 lg:flex lg:flex-col lg:justify-center lg:mx-10">
-            <div className="text-center mb-4 lg:grid lg:grid-cols-3 lg:justify-items-center">
-              <h3 className="text-lg lg:text-2xl lg:col-start-2">
+            <div className="text-center mb-4 lg:grid lg:grid-cols-3 lg:justify-items-center 2xl:grid 2xl:grid-cols-5 2xl:justify-items-center">
+              <h3 className="text-lg lg:text-2xl lg:col-start-2 2xl:col-start-3">
                 Events - All{" "}
                 <p className="inline-block text-base">({records})</p>
               </h3>
-              <h3 className="italic text-sm lg:mt-auto lg:ml-auto lg:text-base">
+              <h3 className="italic text-sm lg:mt-auto lg:ml-auto lg:text-base 2xl:col-start-5 2xl:ml-0">
                 Last updated: {lastUpdated}
               </h3>
             </div>
@@ -90,7 +90,7 @@ const App = ({ user, setUser }) => {
             >
               <Button name="Map" mapIcon="true" />
             </Link>
-            <div className="grid grid-cols-1 gap-y-6 lg:grid lg:grid-cols-3 lg:auto-rows-max lg:gap-x-24 lg:gap-y-24 2xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-y-6 mx-auto md:grid md:grid-cols-2 md:auto-rows-max md:gap-x-10 lg:grid lg:grid-cols-3 lg:auto-rows-max lg:gap-x-12 lg:gap-y-16 2xl:grid-cols-4">
               {eventData.map((event) => {
                 return (
                   <div key={event._id}>
