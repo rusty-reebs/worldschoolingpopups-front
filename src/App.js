@@ -29,7 +29,7 @@ const App = ({ user, setUser }) => {
           },
         });
         let refinedData = await data.json();
-        console.log(refinedData);
+        // console.log(refinedData);
         setRecords(refinedData.records);
         setEventData(refinedData.events);
 
