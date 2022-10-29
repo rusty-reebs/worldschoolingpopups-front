@@ -21,7 +21,7 @@ const Card = ({ images, title, country, dateStart, dateEnd, eventType }) => {
       <div className="relative">
         <img
           src={newUrl}
-          className="block rounded-md aspect-4/3 mb-3"
+          className="block rounded-md aspect-4/3 mb-3 w-full"
           alt="eventimage"
         />
         {today > endDate && dateStart != null ? (

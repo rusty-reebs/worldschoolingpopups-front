@@ -43,7 +43,7 @@ const Detail = (props) => {
         console.log(error);
       }
     }
-  }, []);
+  }, [eventId]);
 
   if (isLoading) {
     return (
