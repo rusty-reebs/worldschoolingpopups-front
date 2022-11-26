@@ -6,6 +6,7 @@ import { myApi } from "../App";
 const EventsMap = () => {
   const [eventData, setEventData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const today = new Date();
 
   useEffect(() => {
     try {
@@ -16,6 +17,7 @@ const EventsMap = () => {
           "Content-Type": "application/json",
         });
         let refinedData = await data.json();
+
         setEventData(refinedData.events);
         setIsLoading(false);
       };
@@ -47,14 +49,16 @@ const EventsMap = () => {
       </div>
     );
   } else {
-    let eventLocations = eventData.map((event) => {
-      return {
-        name: event.name,
-        id: event._id,
-        lat: event.location.lat,
-        lon: event.location.lon,
-      };
-    });
+    let eventLocations = eventData.map((event) => ({
+      name: event.name,
+      id: event._id,
+      lat: event.location.lat,
+      lon: event.location.lon,
+      isCompleted:
+        today > new Date(event.date.end) && event.date.end !== null
+          ? true
+          : false,
+    }));
     let defaultLocation = {
       address: "",
       lat: 25.116,

@@ -22,6 +22,8 @@ const Detail = (props) => {
   let params = useParams();
   let eventId = params.eventId.toString();
 
+  const today = new Date();
+
   useEffect(() => {
     try {
       const loadEvent = async () => {
@@ -111,7 +113,15 @@ const Detail = (props) => {
         <div className="lg:w-4/5 lg:mx-auto">
           <div className="mb-2 bg-darkblue lg:rounded-md">
             <div className="mx-5 py-3  text-white">
-              <h2 className="text-2xl">{eventData.name}</h2>
+              <div className="flex lg:flex-row lg:gap-x-2">
+                <h2 className="text-2xl">{eventData.name}</h2>
+                {today > new Date(eventData.date.end) &&
+                  eventData.date.end !== null && (
+                    <div className="flex bg-red absolute font-bold top-3 right-0 text-white text-sm m-3 p-3 rounded-md lg:relative lg:top-0 lg:p-0 lg:m-0 lg:place-items-center">
+                      <p className="lg:mx-2">COMPLETED</p>
+                    </div>
+                  )}
+              </div>
               <p>
                 <FaMapMarkerAlt className="inline text-white" />
                 &nbsp;&nbsp;

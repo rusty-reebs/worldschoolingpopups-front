@@ -27,6 +27,7 @@ const Map = ({ locations, defaultLocation, zoomLevel, mapHeight, showPin }) => {
                 lng={event.lon}
                 name={event.name}
                 id={event.id}
+                isCompleted={event.isCompleted}
               />
             ))
           : null}
