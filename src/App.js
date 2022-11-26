@@ -10,13 +10,15 @@ import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
 
-// const myApi = process.env.REACT_APP_DEV_API; //! development server
-const myApi = process.env.REACT_APP_PROD_API; //! production server
+const myApi = process.env.REACT_APP_DEV_API; //! development server
+// const myApi = process.env.REACT_APP_PROD_API; //! production server
 
 const App = ({ user, setUser }) => {
   const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [records, setRecords] = useState(0);
+  const [upcomingEvents, setUpcomingEvents] = useState(0);
+  const [completedEvents, setCompletedEvents] = useState(0);
   const [lastUpdated, setLastUpdated] = useState(null);
 
   useEffect(() => {
@@ -29,9 +31,20 @@ const App = ({ user, setUser }) => {
           },
         });
         let refinedData = await data.json();
-        // console.log(refinedData);
-        setRecords(refinedData.records);
+        // setRecords(refinedData.records);
         setEventData(refinedData.events);
+
+        // sort completed and upcoming events
+        let today = new Date();
+        let completed = [];
+        let notCompleted = [];
+        refinedData.events.forEach((event) => {
+          if (today > new Date(event.date.end) && event.date.end !== null) {
+            completed.push(event);
+          } else notCompleted.push(event);
+        });
+        setCompletedEvents(completed);
+        setUpcomingEvents(notCompleted);
 
         // manipulate last updated date
         let lastUpdated = new Date(refinedData.lastUpdated);
@@ -49,9 +62,7 @@ const App = ({ user, setUser }) => {
       };
       loadEvents();
     } catch (error) {
-      if (error) {
-        console.log(error);
-      }
+      console.log(error);
     }
   }, []);
 
@@ -76,8 +87,10 @@ const App = ({ user, setUser }) => {
           <div className="flex flex-col mx-4 lg:flex lg:flex-col lg:justify-center lg:mx-10">
             <div className="text-center mb-4 lg:grid lg:grid-cols-3 lg:justify-items-center 2xl:grid 2xl:grid-cols-5 2xl:justify-items-center">
               <h3 className="text-lg lg:text-2xl lg:col-start-2 2xl:col-start-3">
-                Events - All{" "}
-                <p className="inline-block text-base">({records})</p>
+                Events - Current and Upcoming{" "}
+                <p className="inline-block text-base">
+                  ({upcomingEvents.length})
+                </p>
               </h3>
               <h3 className="italic text-sm lg:mt-auto lg:ml-auto lg:text-base 2xl:col-start-5 2xl:ml-0">
                 Last updated: {lastUpdated}
@@ -89,8 +102,35 @@ const App = ({ user, setUser }) => {
             >
               <Button name="Map" mapIcon="true" />
             </Link>
-            <div className="grid grid-cols-1 gap-y-6 mx-auto md:grid md:grid-cols-2 md:auto-rows-max md:gap-x-10 lg:grid lg:grid-cols-3 lg:auto-rows-max lg:gap-x-12 lg:gap-y-16 2xl:grid-cols-4">
-              {eventData.map((event) => {
+            <div className="grid grid-cols-1 gap-y-6 mb-2 md:grid md:grid-cols-2 md:auto-rows-max md:gap-x-10 lg:grid lg:grid-cols-3 lg:auto-rows-max lg:gap-x-12 lg:gap-y-16 2xl:grid-cols-4">
+              {upcomingEvents.map((event) => {
+                return (
+                  <div key={event._id}>
+                    <Link to={`${event._id}`} key={event._id}>
+                      <Card
+                        key={event._id}
+                        images={event.images}
+                        title={event.name}
+                        country={event.location.country}
+                        eventType={event.date.eventType}
+                        dateStart={event.date.start}
+                        dateEnd={event.date.end}
+                      />
+                    </Link>
+                    <Outlet />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="w-full py-0.5 my-10 bg-darkblue rounded-lg"></div>
+            <h3 className="text-lg text-center mb-4 lg:text-2xl lg:col-start-2 2xl:col-start-3">
+              Events - Completed{" "}
+              <p className="inline-block text-base">
+                ({completedEvents.length})
+              </p>
+            </h3>
+            <div className="grid grid-cols-1 gap-y-6 mb-2 md:grid md:grid-cols-2 md:auto-rows-max md:gap-x-10 lg:grid lg:grid-cols-3 lg:auto-rows-max lg:gap-x-12 lg:gap-y-16 2xl:grid-cols-4">
+              {completedEvents.map((event) => {
                 return (
                   <div key={event._id}>
                     <Link to={`${event._id}`} key={event._id}>
