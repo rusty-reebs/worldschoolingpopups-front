@@ -10,13 +10,11 @@ import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
 
-const myApi = process.env.REACT_APP_DEV_API; //! development server
-// const myApi = process.env.REACT_APP_PROD_API; //! production server
+// const myApi = process.env.REACT_APP_DEV_API; //! development server
+const myApi = process.env.REACT_APP_PROD_API; //! production server
 
 const App = ({ user, setUser }) => {
-  const [eventData, setEventData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [records, setRecords] = useState(0);
   const [upcomingEvents, setUpcomingEvents] = useState(0);
   const [completedEvents, setCompletedEvents] = useState(0);
   const [lastUpdated, setLastUpdated] = useState(null);
@@ -31,8 +29,6 @@ const App = ({ user, setUser }) => {
           },
         });
         let refinedData = await data.json();
-        // setRecords(refinedData.records);
-        setEventData(refinedData.events);
 
         // sort completed and upcoming events
         let today = new Date();
