@@ -17,7 +17,7 @@ const Card = ({ images, title, country, dateStart, dateEnd, eventType }) => {
   endDate.setMinutes(endDate.getMinutes() + endDate.getTimezoneOffset());
 
   return (
-    <div className="border-none rounded-md">
+    <div className="">
       <div className="relative">
         <img
           src={newUrl}

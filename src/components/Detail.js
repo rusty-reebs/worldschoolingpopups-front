@@ -8,7 +8,6 @@ import { myApi } from "../App";
 import { transformImages } from "./Cloudinary";
 import { FaCalendar } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { FaBed } from "react-icons/fa";
 import { FaChild } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
@@ -143,15 +142,6 @@ const Detail = (props) => {
           <div className="mx-5">
             <div className="lg:flex lg:flex-row lg:justify-between lg:gap-3">
               <div className="lg:basis-3/5 lg:order-1">
-                <div className="border-b border-orange py-2">
-                  <p className="font-bold italic">
-                    <FaBed className="inline text-darkblue" />
-                    &nbsp; Accommodation {eventData.accomIncluded
-                      ? ""
-                      : "NOT"}{" "}
-                    included in price.
-                  </p>
-                </div>
                 {eventData.age.min && eventData.age.max ? (
                   <div className="border-b border-orange py-2">
                     <p className="font-bold">
@@ -172,11 +162,6 @@ const Detail = (props) => {
                     &nbsp; Contact
                   </h4>
                   <div className="mx-2">
-                    {eventData.contact.name ? (
-                      <p className="text-sm lg:text-base font-bold mb-2">
-                        {eventData.contact.name}
-                      </p>
-                    ) : null}
                     {eventData.contact.email ? (
                       <p className="text-sm lg:text-base">
                         <FaEnvelope className="inline text-darkblue" />

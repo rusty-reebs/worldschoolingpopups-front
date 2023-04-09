@@ -1,7 +1,4 @@
 //TODO back button returns to previous position in scroll
-//TODO search by region, when clicked, render component between navbar and Events - All.
-//TODO search by date type -- Fixed, Continous / Open-Ended, Full School Year
-//TODO Backup MongoDB
 
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
@@ -10,8 +7,10 @@ import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
 
-// const myApi = process.env.REACT_APP_DEV_API; //! development server
-const myApi = process.env.REACT_APP_PROD_API; //! production server
+const isDev = process.env.NODE_ENV === "development";
+const myApi = isDev
+  ? process.env.REACT_APP_DEV_API
+  : process.env.REACT_APP_PROD_API;
 
 const App = ({ user, setUser }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,16 +19,20 @@ const App = ({ user, setUser }) => {
   const [lastUpdated, setLastUpdated] = useState(null);
 
   useEffect(() => {
-    try {
-      const loadEvents = async () => {
+    const loadEvents = async () => {
+      let refinedData = null;
+      try {
         let data = await fetch(myApi + "/events", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         });
-        let refinedData = await data.json();
-
+        refinedData = await data.json();
+      } catch (error) {
+        console.log(error);
+      }
+      if (refinedData) {
         // sort completed and upcoming events
         let today = new Date();
         let completed = [];
@@ -55,11 +58,9 @@ const App = ({ user, setUser }) => {
         setLastUpdated(formattedLastUpdated);
 
         setIsLoading(false);
-      };
-      loadEvents();
-    } catch (error) {
-      console.log(error);
-    }
+      }
+    };
+    loadEvents();
   }, []);
 
   return (
