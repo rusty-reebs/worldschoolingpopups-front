@@ -140,7 +140,7 @@ const SessionSelect = ({
   );
 };
 
-const CountryInput = ({ name, label, required, value, onChange }) => {
+const CountryInput = ({ name, label, required, disabled, value, onChange }) => {
   return (
     <div className="bg-white border transition duration-150 ease-in-out focus-within:border-orange border-black rounded-md mb-2">
       <label
@@ -152,6 +152,7 @@ const CountryInput = ({ name, label, required, value, onChange }) => {
       </label>
       <CountryDropdown
         name={name}
+        disabled={disabled}
         value={value}
         className="bg-white focus:outline-none mb-2 text-base font-light placeholder-black w-full px-1"
         onChange={onChange}

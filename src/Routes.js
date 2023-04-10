@@ -7,6 +7,7 @@ import About from "./components/About";
 import NotFound from "./components/404";
 import Login from "./components/admin/Login";
 import Admin from "./components/admin/Admin";
+import UpdateEvent from "./components/admin/UpdateEvent";
 
 const RouteSwitch = () => {
   return (
@@ -21,6 +22,7 @@ const RouteSwitch = () => {
         <Route path="/events/*" element={<NotFound />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/:eventId" element={<UpdateEvent />} />
       </Routes>
     </BrowserRouter>
   );
