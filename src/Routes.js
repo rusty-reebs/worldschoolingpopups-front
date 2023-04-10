@@ -5,6 +5,8 @@ import Detail from "./components/Detail";
 import EventsMap from "./components/EventsMap";
 import About from "./components/About";
 import NotFound from "./components/404";
+import Login from "./components/admin/Login";
+import Admin from "./components/admin/Admin";
 
 const RouteSwitch = () => {
   return (
@@ -17,6 +19,8 @@ const RouteSwitch = () => {
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/events/*" element={<NotFound />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
