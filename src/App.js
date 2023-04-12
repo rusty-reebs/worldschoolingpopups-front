@@ -7,10 +7,12 @@ import Nav from "./components/Nav";
 import Card from "./components/Card";
 import Button from "./components/Button";
 
-const isDev = process.env.NODE_ENV === "development";
-const myApi = isDev
-  ? process.env.REACT_APP_DEV_API
-  : process.env.REACT_APP_PROD_API;
+// const isDev = process.env.NODE_ENV === "development";
+// const myApi = isDev
+//   ? process.env.REACT_APP_DEV_API
+//   : process.env.REACT_APP_PROD_API;
+
+const myApi = process.env.REACT_APP_PROD_API;
 
 const App = ({ user, setUser }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,20 +21,16 @@ const App = ({ user, setUser }) => {
   const [lastUpdated, setLastUpdated] = useState(null);
 
   useEffect(() => {
-    const loadEvents = async () => {
-      let refinedData = null;
-      try {
+    try {
+      const loadEvents = async () => {
         let data = await fetch(myApi + "/events", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         });
-        refinedData = await data.json();
-      } catch (error) {
-        console.log(error);
-      }
-      if (refinedData) {
+        let refinedData = await data.json();
+
         // sort completed and upcoming events
         let today = new Date();
         let completed = [];
@@ -58,9 +56,11 @@ const App = ({ user, setUser }) => {
         setLastUpdated(formattedLastUpdated);
 
         setIsLoading(false);
-      }
-    };
-    loadEvents();
+      };
+      loadEvents();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (
